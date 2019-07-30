@@ -6,11 +6,11 @@ import { Button, Grid, Segment, Header, Container, Modal, Form, List } from 'sem
 export default class Dashboard extends Component{
 
   state = {  
-    
+   
   };
 
 
   render(){
-        return
+        return <div>"Hello!"</div>
   }
 }

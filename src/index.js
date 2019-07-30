@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 import TaskTussle from './components/TaskTussle'
 import './index.css'
 import * as firebase from 'firebase/app';
-import { firebaseConfig } from './config/firebase'
+import { firebaseConfig } from './components/config/firebase'
 
 firebase.initializeApp(firebaseConfig);
 

@@ -1,21 +1,20 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth'
 
-const url = 'http://localhost:8088/users';
+const url = "http://localhost:5002";
 
 const setUserInLocalStorage = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 }
 
 export const saveUserToJsonServer = (user) => {
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  })
-    .then(res => res.json())
+    return fetch(`${url}/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      }).then(data => data.json())
     .then(newUser => {
       setUserInLocalStorage(newUser);
       return newUser;
@@ -23,24 +22,10 @@ export const saveUserToJsonServer = (user) => {
 }
 
 
-export const getUser = (userId) => {
-  return fetch(`${url}/${userId}`)
-    .then(res => res.json());
-}
 
-export const login = (email) => {
-  // NOTE: json-server will return an array, but we only expect one or none users to come back so we just take the first one
-  return fetch(`${url}?email=${email}`)
-    .then(res => res.json())
-    .then(matchingUsers => {
-      if (!matchingUsers.length) {
-        alert('No user exists with that email address');
-        return;
-      }
-      const user = matchingUsers[0];
-      setUserInLocalStorage(user);
-      return user;
-    });
+export const getUser = (userId) => {
+  return fetch(`${url}/users/${userId}`)
+    .then(res => res.json());
 }
 
 export const getUserFromLocalStorage = () => {

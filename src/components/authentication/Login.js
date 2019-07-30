@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import "./Login.css"
 import { Link } from 'react-router-dom';
-import { loginUser } from '../auth/userManager';
+import { loginUser } from '../authorization/userManager';
 
 
 export default class Login extends Component {
@@ -20,46 +20,6 @@ export default class Login extends Component {
           });
       }
     
-
-    // handleFieldChange = (event) => {
-    //     const stateToChange = {}
-    //     stateToChange[event.target.id] = event.target.value
-    //     this.setState(stateToChange)
-    // }
-
-    // handleLogin = (event) => {
-    //     event.preventDefault()
-    //     if(this.state.user_name === "" || this.state.password === ""){
-    //         alert("Please fill in username and password")
-    //     }
-    //     let userMatch = this.props.users.find(user =>(user.user_name === this.state.user_name && user.password === this.state.password))
-    //     if(userMatch !== undefined){
-    //         sessionStorage.setItem("id", userMatch.id)
-    //         this.props.history.push("/")
-    //     }
-    //     else{
-    //           alert("Password or username does not match. Try again or register!")
-    //     }
-    //     }
-
-
-    // handleRegister = (event) => {
-    //     event.preventDefault()
-    //     let userMatch = this.props.users.filter(user =>
-    //         (user.user_name === this.state.user_name || user.email === this.state.email))
-    //     if(this.state.user_name === "" || this.state.password === "" || this.state.email === ""){
-    //         alert("Please fill in username, email, and password")
-    //     }
-    //     else if(userMatch.length === 0){
-    //         this.props.addUser(this.state, "users")
-    //             .then( event => {
-    //                 let newUserMatch = this.props.users.filter(user => (user.user_name === this.state.user_name))
-    //                 sessionStorage.setItem("id", newUserMatch[0].id)
-    //                 this.props.history.push("/")
-    //             })
-    //     }else{
-    //         alert("Username or email is already in use.")
-    // }}
 
     render() {
         return (
