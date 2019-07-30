@@ -1,102 +1,128 @@
 {
   "users": [
     {
-        "user_name": "mom",
-        "email": "mom@hotmail.com",
-        "password": "mom",
-        "icon": "",
-        "wins": "",
-        "loses": "",
-        "id": 1
-    }
-  ], 
-  "task":[
-    {
-        "userId": 1,
-        "name": "Unload Dishwasher",
-        "completed": false,
-        "wheelId": 1,
-        "pointsId": 1,
-        "taskTypeId": 1,
-        "id": 1
+      "user_name": "mom",
+      "email": "mom@hotmail.com",
+      "password": "mom",
+      "icon": "",
+      "wins": "",
+      "loses": "",
+      "id": 1
     },
     {
-        "userId": 1,
-        "name": "Take Out Garbage",
-        "completed": false,
-        "wheelId": 1,
-        "pointsId": 1,
-        "taskTypeId": 1,
-        "id": 2
+      "email": "sydneycnoh@gmail.com",
+      "username": "sydney",
+      "id": "F0B9yLpMjee4WVkoDLOFG9YmPop2"
     },
     {
-        "userId": 1,
-        "name": "Sweep",
-        "completed": false,
-        "wheelId": 1,
-        "pointsId": 1,
-        "taskTypeId": 1,
-        "id": 3
+      "email": "peter@gmail.com",
+      "username": "Peter",
+      "id": "mkX6MfllGeMoOZU5CkdsX4jYw8I2"
+    },
+    {
+      "email": "nebula@gmail.com",
+      "username": "Nebula",
+      "id": "3Ttelmv3WjZd6ZgdyOJ2jTmsEdT2"
     }
   ],
-  "team":[
+  "tasks": [
     {
-        "name": "3004 Crew",
-        "ownerId": 1,
-        "id": 1
+      "userId": 1,
+      "name": "Unload Dishwasher",
+      "completed": false,
+      "wheelId": 1,
+      "pointsId": 1,
+      "taskTypeId": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "Take Out Garbage",
+      "completed": false,
+      "wheelId": 1,
+      "pointsId": 1,
+      "taskTypeId": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "name": "Sweep",
+      "completed": false,
+      "wheelId": 1,
+      "pointsId": 1,
+      "taskTypeId": 1,
+      "id": 3
     }
   ],
-  "wheel":[
+  "teams": [
     {
-        "completed": false,
-        "winnerId": 1,
-        "monthRoundId": "1",
-        "startTime": "today",
-        "id": 1
+      "name": "3004 Crew",
+      "ownerId": 1,
+      "id": 1
+    },
+    {
+      "name": "First Team",
+      "ownerId": 2,
+      "id": 2
     }
   ],
-  "points":[
+  "wheel": [
     {
-        "value": 10,
-        "id": 1
+      "completed": false,
+      "winnerId": 1,
+      "monthRoundId": "1",
+      "startTime": "today",
+      "id": 1
+    }
+  ],
+  "points": [
+    {
+      "value": 10,
+      "id": 1
     },
     {
-        "value": 5,
-        "id": 2
+      "value": 5,
+      "id": 2
     },
     {
-        "value": 15,
-        "id": 3
+      "value": 15,
+      "id": 3
     }
-    ],
-    "taskType":[
+  ],
+  "taskType": [
     {
-        "type": "regTask",
-        "id": 1
+      "type": "regTask",
+      "id": 1
     },
     {
-        "type": "bonusTask",
-        "id": 2
+      "type": "bonusTask",
+      "id": 2
     },
     {
-        "type": "crapTask",
-        "id": 3
+      "type": "crapTask",
+      "id": 3
     }
-    ],
-    "userPrize": [
+  ],
+  "userPrize": [
     {
-        "prize": "I pick the friday movie",
-        "userId": 1,
-        "monthRoundId": 1
+      "prize": "I pick the friday movie",
+      "userId": 1,
+      "monthRoundId": 1
     }
-    ],
-    "userPoints": [
+  ],
+  "userPoints": [
     {
-        "teamId": 1,
-        "wheelId": 1,
-        "points": 20,
-        "userId": 1,
-        "id": 1
+      "teamId": 1,
+      "wheelId": 1,
+      "points": 20,
+      "userId": 1,
+      "id": 1
     }
-    ]
+  ],
+  "teamRelationship": [
+    {
+      "userId": 1,
+      "teamId": 1
+    }
+  ]
 }

@@ -12,7 +12,7 @@ import {
 class NavBar extends Component {
 
 handleLogout = (event)=>{
-    sessionStorage.clear()
+   localStorage.clear()
 }
     render() {
         return (

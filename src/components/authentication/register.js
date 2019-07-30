@@ -1,22 +1,19 @@
 import React, { Component } from "react"
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import { register } from '../auth/userManager';
+import { register } from '../authorization/userManager';
+import SearchBar from 'react-search-bar-semantic-ui';
 
-
-export default class Login extends Component {
+//FIXME: These buttons stack instead of are next to each other
+//FIXME: Have it throw the firebase errors on the screen
+export default class Register extends Component {
 
     state = {
         email: '',
         username: '',
-        password: ''
+        password: '',
+        team: ''
     }
-
-    // handleFieldChange = (event) => {
-    //     const stateToChange = {}
-    //     stateToChange[event.target.id] = event.target.value
-    //     this.setState(stateToChange)
-    // }
       
         submit = () => {
           const user = {
@@ -32,70 +29,69 @@ export default class Login extends Component {
             });
         }
 
-    // handleLogin = (event) => {
-    //     event.preventDefault()
-    //     if(this.state.user_name === "" || this.state.password === ""){
-    //         alert("Please fill in username and password")
-    //     }
-    //     let userMatch = this.props.users.find(user =>(user.user_name === this.state.user_name && user.password === this.state.password))
-    //     if(userMatch !== undefined){
-    //         sessionStorage.setItem("id", userMatch.id)
-    //         this.props.history.push("/")
-    //     }
-    //     else{
-    //           alert("Password or username does not match. Try again or register!")
-    //     }
-    //     }
+        
+        render() {
 
+            // const data = 
+            // this.props.teams.map((team)=> ({title: `${team.name}`}))
+            // console.log(data)
 
-    // handleRegister = (event) => {
-    //     event.preventDefault()
-    //     let userMatch = this.props.users.filter(user =>
-    //         (user.user_name === this.state.user_name || user.email === this.state.email))
-    //     if(this.state.user_name === "" || this.state.password === "" || this.state.email === ""){
-    //         alert("Please fill in username, email, and password")
-    //     }
-    //     else if(userMatch.length === 0){
-    //         this.props.addUser(this.state, "users")
-    //             .then( event => {
-    //                 let newUserMatch = this.props.users.filter(user => (user.user_name === this.state.user_name))
-    //                 sessionStorage.setItem("id", newUserMatch[0].id)
-    //                 this.props.history.push("/")
-    //             })
-    //     }else{
-    //         alert("Username or email is already in use.")
-    // }}
+            // const data1 = 
+            // [
+            //     {
+            //         title: "Hello you",
+            //         // ... whatever other fields
+            //     },
+            //     {
+            //         title:"awesome"
+            //     }
+            // ]
+            // console.log(data1)
 
-    render() {
         return (
 
-  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='teal' textAlign='center'>
-        {/* <Image src='/logo.png' />*/} Member Login 
-      </Header>
-      <Form size='large' onSubmit={this.submit}>
-        <Segment stacked>
-          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={(e) => this.setState({ username: e.target.value })}/>
-          <Form.Input
-            fluid
-            icon='lock'
-            iconPosition='left'
-            placeholder='Password'
-            type='password'
-          />
+        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' color='teal' textAlign='center'>
+                {/* <Image src='/logo.png' />*/} Register User
+            </Header>
+            <Form size='large' onSubmit={this.submit}>
+                <Segment stacked>
+                <Form.Input fluid icon='user' iconPosition='left' placeholder="Username" onChange={(e) => this.setState({ username: e.target.value })}/>
+                <Form.Input fluid icon='envelope' iconPosition='left' placeholder='E-mail address' onChange={(e) => this.setState({ email: e.target.value })}/>
+                <Form.Input
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Password'
+                    type='password'
+                    onChange={(e) => this.setState({ password: e.target.value })}
+                />
+                <Button color='teal' fluid size='large'>
+                    Join Team
+                </Button>
 
-          <Button color='teal' fluid size='large'>
-            Login
-          </Button>
-        </Segment>
-      </Form>
-      <Message>
-        Already registered? <Link to="/login">Log In</Link>
-      </Message>
-    </Grid.Column>
-  </Grid>
-)
+                <br/>
+
+                <SearchBar />
+
+                 <br/>
+                <Button type='submit' color='teal' fluid size='large' >
+                    submit
+                </Button>
+
+                <br/>
+                <Button type='submit' color='teal' fluid size='large' >
+                    Make Team
+                </Button>
+                </Segment>
+            </Form>
+            <Message>
+                Already registered? <Link to="/login">Log In</Link>
+            </Message>
+            </Grid.Column>
+        </Grid>
+        )
 
 
         //     <Segment placeholder className="login">
