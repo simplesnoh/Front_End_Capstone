@@ -23,6 +23,16 @@
       "email": "nebula@gmail.com",
       "username": "Nebula",
       "id": "3Ttelmv3WjZd6ZgdyOJ2jTmsEdT2"
+    },
+    {
+      "email": "john@gmail.com",
+      "username": "john",
+      "id": "hwHPMobsCKdZznmTTEvYSvqG1lL2"
+    },
+    {
+      "email": "mo@gmail.com",
+      "username": "Mo",
+      "id": "oOmctGHC3Bd5VvRiwq6OV5mWFBj1"
     }
   ],
   "tasks": [
@@ -75,32 +85,21 @@
       "id": 1
     }
   ],
-  "points": [
-    {
-      "value": 10,
-      "id": 1
-    },
-    {
-      "value": 5,
-      "id": 2
-    },
-    {
-      "value": 15,
-      "id": 3
-    }
-  ],
   "taskType": [
     {
       "type": "regTask",
-      "id": 1
+      "id": 1,
+      "points": 10
     },
     {
       "type": "bonusTask",
-      "id": 2
+      "id": 2,
+      "points": 20
     },
     {
       "type": "crapTask",
-      "id": 3
+      "id": 3,
+      "points": 0
     }
   ],
   "userPrize": [

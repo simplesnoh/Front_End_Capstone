@@ -4,6 +4,9 @@ import "./Login.css"
 import { Link } from 'react-router-dom';
 import { loginUser } from '../authorization/userManager';
 
+//TODO: Make the navbar go awao
+// get rid of weird space
+// add logo
 
 export default class Login extends Component {
 
@@ -19,6 +22,7 @@ export default class Login extends Component {
             this.props.history.push('/');
           });
       }
+
     
 
     render() {

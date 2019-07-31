@@ -5,6 +5,7 @@ import APIManager from "./modules/APIManager";
 import Login from "./authentication/Login"
 import Register from "./authentication/register"
 import { logout } from '../components/authorization/userManager';
+import TeamForm from '../components/authentication/TeamForm'
 
 
 export default class ApplicationViews extends Component {
@@ -15,7 +16,6 @@ export default class ApplicationViews extends Component {
     tasks: [],
     teams: [],
     wheel: [],
-    points: [],
     taskType: [],
     userPrize: [],
     UserPoints: [],
@@ -30,7 +30,6 @@ export default class ApplicationViews extends Component {
     APIManager.all("tasks").then(tasks => (newState.tasks = tasks));
     APIManager.all("teams").then(teams => (newState.teams = teams));
     APIManager.all("wheel").then(wheel => (newState.wheel = wheel));
-    APIManager.all("points").then(points => (newState.points = points));
     APIManager.all("taskType").then(taskType => (newState.taskType = taskType));
     APIManager.all("userPrize").then(userPrize => (newState.userPrize = userPrize));
     APIManager.all("userPoints").then(userPoints => (newState.userPoints = userPoints));
@@ -49,6 +48,7 @@ export default class ApplicationViews extends Component {
    );
 
 //FIXME: This onlogin/onRegister thing doesn't really do anything...
+//Also we need to authenticate on all windows
 
   render() {
       console.log(this.state.teams)
@@ -64,6 +64,10 @@ export default class ApplicationViews extends Component {
                 <Redirect to="/login" />
               )
           }} />
+
+        <Route path="/TeamForm" render={props => {
+          return <TeamForm {...props} />
+        }} />
 
         <Route path="/register" render={props => {
           return <Register {...props} teams={this.state.teams} addUser={this.addToAPI} onRegister={(user) => this.setState({ user: user })}/*users={this.state.users} addUser={this.addToAPI}*/ />
