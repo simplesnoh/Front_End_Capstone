@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth'
+import ApplicationViews from '../ApplicationViews'
 
 const url = "http://localhost:5002";
 
@@ -17,7 +18,7 @@ export const saveUserToJsonServer = (user) => {
       }).then(data => data.json())
     .then(newUser => {
       setUserInLocalStorage(newUser);
-      return newUser;
+        return newUser;
     });
 }
 

@@ -42,5 +42,10 @@ export default Object.create(null, {
       body: JSON.stringify(editedObj)
     }).then(data => data.json());
   }
-}
+},
+
+  getWheelFromAPI: function(wheel) {
+
+  }
+
 })

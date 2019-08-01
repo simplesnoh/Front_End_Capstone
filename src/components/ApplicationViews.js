@@ -37,6 +37,14 @@ export default class ApplicationViews extends Component {
     .then(() => this.setState(newState));
     }
 
+    deleteFromAPI = (item, resource) =>
+    APIManager.delete(item, resource)
+   .then(APIManager.all(resource))
+   .then(item => {
+    //  this.props.history.push("/");
+     this.setState({ [resource]: item });
+   }); 
+
     addToAPI = (item, resource) =>
     APIManager.post(item, resource)
    .then(() => APIManager.all(resource))
@@ -51,7 +59,6 @@ export default class ApplicationViews extends Component {
 //Also we need to authenticate on all windows
 
   render() {
-      console.log(this.state.teams)
     return (
       <React.Fragment>
         <Route path="/login" render={props => {
@@ -66,11 +73,12 @@ export default class ApplicationViews extends Component {
           }} />
 
         <Route path="/TeamForm" render={props => {
-          return <TeamForm {...props} />
+          let teams = this.state.teams.find((team => team.ownerId === sessionStorage.getItem('team')))
+          return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} deleteFromAPI={this.deleteFromAPI}/>
         }} />
 
         <Route path="/register" render={props => {
-          return <Register {...props} teams={this.state.teams} addUser={this.addToAPI} onRegister={(user) => this.setState({ user: user })}/*users={this.state.users} addUser={this.addToAPI}*/ />
+          return <Register {...props} teams={this.state.teams} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
           }} />
 
       </React.Fragment>

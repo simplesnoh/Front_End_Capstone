@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./Login.css"
 import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import TeamFormList from './TeamFormList'
 
 /*TODO:
  -Team name input
@@ -18,12 +19,7 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
  monthRound: teamId
 */
 
-/*TODO: TASK DIVS
-- do a loop over number of members and create a div for each of them
-- Each div needs
-group number attached as key
--inside of each div you need to send in 
-*/
+
 
 const options = [
     { key: '0m', text: '0', value: 0 },
@@ -33,8 +29,6 @@ const options = [
     { key: '6m', text: '6', value: 6 }
 ]
 
-
-
 export default class TeamForm extends Component {
 
     state = {
@@ -42,29 +36,30 @@ export default class TeamForm extends Component {
        teamName: "",
        options,
        value: options[0].value,
-       groupNumber: ""
+       task: "",
+       tasks: ""
       }
-
  
-    
-    createOptions = () => {
-        // let hello = <options key="560">Hello</options>
-        // this.setState({hello: hello})
-        console.log("first", this.state.value)
-        let num = this.state.value
-        let options2 = []
-        for(let i = 1; i <= num; i++) {
-            options2.push( <option key = {i} id= {i} value={i}>{i}</option>)
-        }
-        this.setState({options2: options2})
-        console.log("is this happening?", options2)
-        console.log(this.state.value)
-    }
 
+    createTask = () => {
+    const newTask = {
+        name: this.state.task,
+        completed: false,
+        ownerId: sessionStorage.getItem('team'),
+        taskTypeId: 2,
+        teamId: this.props.teams.id
+      };
+      this.props
+        .addToAPI(newTask, "tasks")
+    this.setState({tasks : newTask})
+    this.setState({task : ""})
+    }
 
     render() {
     
         const { value, options } = this.state;
+
+        console.log("tasks", this.state.tasks)
 
         return (
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -75,31 +70,32 @@ export default class TeamForm extends Component {
               <Form size='large'>
                 {/* <Segment stacked> */}
                   <Form.Input fluid label='Team Name' onChange={(e) => this.setState({teamName: e.target.value})} />
-                  <Form.Select fluid label='How Many Members?' options={options} value={value} placeholder='Pick A Number' onChange={(e, {value}) => {
-                      this.setState({value})
-                      this.createOptions()}}/>
-                  <Form.Input fluid label='Task' onChange={(e) => this.setState({email: e.target.value})} />
-                  {/* <Form.Select fluid label='Group' value={value2} options={this.createOptions} placeholder='Pick A Group' /> */}
-                    
-                  <label htmlFor="employee">Group:</label>
-                    <select defaultValue="" name="group" id="groupId"onChange={(e) => this.setState({groupNumber: e.target.value})}>
-                        <option value="">Select a Group</option>
-                        {this.state.options2}
-                    </select>
+                  <Form.Select fluid label='How Many Members?' options={options} value={value} placeholder='Pick A Number' onChange={(e) => {
+                      this.setState({value})}}/>
+
+               
+                  <Form.Input fluid label='Task' value={this.state.task} onChange={(e) => this.setState({task: e.target.value})} />
+            
                     <br/>
-                    <Button color='teal' fluid size='large'>
+                    <Button color='teal' fluid size='large' onClick={this.createTask}>
                     Add
                   </Button>
-
-
-
-
-                    <Form.Input fluid label='Pick A Punishment' onChange={(e) => this.setState({teamName: e.target.value})} />
+                
+                { this.state.tasks !== "" ? (
+                <Segment>
+                  <TeamFormList tasks={this.props.tasks} teams={this.props.teams} deleteFromAPI={this.props.deleteFromAPI}/>
+                </Segment>
+                )
+                : (
+                    <React.Fragment></React.Fragment>
+                ) }
+                 <Form.Input fluid label='Pick A Punishment' onChange={(e) => this.setState({teamName: e.target.value})} />
                     
                   <Button color='teal' fluid size='large'>
                     Start Your Team
                   </Button>
                 {/* </Segment> */}
+              
               </Form>
             </Grid.Column>
           </Grid>
@@ -107,16 +103,25 @@ export default class TeamForm extends Component {
     }
 }
 
-{/* <select
-              defaultValue=""
-              name="employee"
-              id="employeeId"
-              onChange={this.handleFieldChange}
-            >
-              <option value="">Select an employee</option>
-              {this.props.employees.map(e => (
-                <option key={e.id} id={e.id} value={e.id}>
-                  {e.name}
-                </option>
-              ))}
-            </select> */}
+// IN CASE I NEED TO LINK TEAM MEMBERS AND GROUPS AGAIN
+
+            // <label htmlFor="group">Group:</label>
+            //         <select defaultValue="" name="group" id="groupId"onChange={(e) => this.setState({groupNumber: e.target.value})}>
+            //             <option value="">Select a Group</option>
+            //             {this.state.options2}
+            //         </select>
+
+            // <Form.Select fluid label='How Many Members?' options={options} value={value} placeholder='Pick A Number' onChange={(e, {value}) => {
+            //     this.setState({value})
+            //     this.createOptions(value)}}/>
+
+            // createOptions = (value) => {
+            //     // let hello = <options key="560">Hello</options>
+            //     // this.setState({hello: hello})
+            //     let num = this.state.value
+            //     let options2 = []
+            //     for(let i = 1; i <= value; i++) {
+            //         options2.push( <option key = {i} id= {i} value={i}>{i}</option>)
+            //     }
+            //     this.setState({options2: options2})
+            // }

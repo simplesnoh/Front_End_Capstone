@@ -27,17 +27,23 @@ export default class Register extends Component {
     }
       
         submit = () => {
-          const user = {
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password
-          }
-          const teamRelationship = {
-              userId: localStorage.getItem("id"),
-              teamId: this.state.teamId
-          }
+        const user = {
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+        }
         register(user)
             .then((user) => {
+            const teams = {
+                ownerId: user.id
+                }
+                this.props.addToAPI(teams, "teams")
+                .then(sessionStorage.setItem('team', teams.ownerId))
+            const wheel = {
+                completed: false,
+                ownerId: user.id
+                }
+                this.props.addToAPI(wheel, "wheel")
               this.props.history.push('/TeamForm');
               this.props.onRegister(user);
             });
@@ -64,7 +70,17 @@ export default class Register extends Component {
           }
         }
             )
-    }
+         }
+
+         makeWheel = () => {
+             const wheel = {
+                 completed: false,
+             }
+             this.props
+             .addToAPI(wheel, "wheel")
+
+         }
+         
 
 
         
@@ -125,7 +141,7 @@ export default class Register extends Component {
                 </Button>
 
                 <br/>
-                <Button type='submit' color='teal' fluid size='large' >
+                <Button type='submit' color='teal' fluid size='large' onClick={this.makeWheel}>
                     Make Team
                 </Button>
                 </Segment>
