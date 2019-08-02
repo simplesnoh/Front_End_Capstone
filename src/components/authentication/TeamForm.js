@@ -3,6 +3,7 @@ import "./Login.css"
 import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import TeamFormList from './TeamFormList'
+import { thisExpression } from "@babel/types";
 
 /*TODO:
  -Team name input
@@ -40,6 +41,23 @@ export default class TeamForm extends Component {
        tasks: ""
       }
  
+    handleSubmit = () => {
+        const newTeam = {
+            name: this.teamName
+        }
+        const monthRound = {
+            teamId: this.props.teams.id
+        } 
+        this.props
+        .addToAPI(monthRound, "monthRound")
+        const TeamRelationship = {
+            userId: this.sessionStorage.getItem("team"),
+            teamId: this.props.teams.id
+        }
+        this.props
+        .addToAPI(TeamRelationship, "teamRelationship")
+        .then(this.props.history.push("/Dashboard"))
+    }
 
     createTask = () => {
     const newTask = {
@@ -83,7 +101,7 @@ export default class TeamForm extends Component {
                 
                 { this.state.tasks !== "" ? (
                 <Segment>
-                  <TeamFormList tasks={this.props.tasks} teams={this.props.teams} deleteFromAPI={this.props.deleteFromAPI}/>
+                  <TeamFormList tasks={this.props.tasks} teams={this.props.teams} deleteFromAPI={this.props.deleteFromAPI} updateAPI={this.props.updateAPI}/>
                 </Segment>
                 )
                 : (

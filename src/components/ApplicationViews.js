@@ -55,6 +55,16 @@ export default class ApplicationViews extends Component {
    }
    );
 
+   updateAPI = (item, resource) => {
+    return APIManager.put(item, resource)
+      .then(() => APIManager.all(resource))
+      .then(item => {
+        this.setState({
+          [resource]: item
+        });
+      });
+  };
+
 //FIXME: This onlogin/onRegister thing doesn't really do anything...
 //Also we need to authenticate on all windows
 
@@ -74,7 +84,7 @@ export default class ApplicationViews extends Component {
 
         <Route path="/TeamForm" render={props => {
           let teams = this.state.teams.find((team => team.ownerId === sessionStorage.getItem('team')))
-          return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} deleteFromAPI={this.deleteFromAPI}/>
+          return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} deleteFromAPI={this.deleteFromAPI} updateAPI={this.updateAPI}/>
         }} />
 
         <Route path="/register" render={props => {

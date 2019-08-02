@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./Login.css"
-import { List } from "semantic-ui-react";
+import { List, Modal } from "semantic-ui-react";
+import TeamEditForm from './TeamEditForm'
 
 
 /*TODO: TASK DIVS
@@ -12,16 +13,21 @@ import { List } from "semantic-ui-react";
 
 */
 
-let teamId = localStorage.getItem("team")
-
 export default class TeamForm extends Component {
 
     state = {
-       
+       open: false
       }
 
  
-
+      handleOpen = () => {
+        this.setState({ open: true })
+      };
+  
+      handleClose = () => {
+          this.setState({ open: false })
+        };
+  
 
 
     render() {
@@ -32,7 +38,11 @@ export default class TeamForm extends Component {
                   this.props.tasks.filter(task => task.teamId === this.props.teams.id)
            .map(task =>
                 <List.Item key={task.id} >
-                <List.Icon name='edit outline' verticalAlign='middle' />
+
+                <Modal trigger={<List.Icon name='edit outline' verticalAlign='middle' onClick={this.handleOpen} />} open={this.state.open} >
+                    <TeamEditForm key={task.id} task={task} updateAPI={this.props.updateAPI} handleClose={this.handleClose} {...this.props}/>
+                </Modal>
+
                 <List.Icon name='trash alternate outline' verticalAlign='middle' onClick={() => this.props.deleteFromAPI(task.id,"tasks")}/>
                 <List.Content>
                     <List.Header>{task.name}</List.Header>
