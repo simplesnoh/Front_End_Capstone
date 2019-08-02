@@ -1,33 +1,80 @@
 import React, { Component } from "react"
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Search } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { register } from '../authorization/userManager';
-import SearchBar from 'react-search-bar-semantic-ui';
 
 //FIXME: These buttons stack instead of are next to each other
 //FIXME: Have it throw the firebase errors on the screen
+
+/*TODO: 
+-create search bar and search bar submit
+-create hide and show class for team/join buttons
+-create teamRelationship & submit user on join team
+****How do we grab teamId????
+****How do I create two submits that do two things
+*/
+
+const url = "http://localhost:5002";
 export default class Register extends Component {
 
     state = {
         email: '',
         username: '',
         password: '',
-        team: ''
+        teamId: '',
+        query: '',
+        results: []
     }
       
         submit = () => {
-          const user = {
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password
-          }
-      
-          register(user)
+        const user = {
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+        }
+        register(user)
             .then((user) => {
-              this.props.history.push('/');
+            const teams = {
+                ownerId: user.id
+                }
+                this.props.addToAPI(teams, "teams")
+                .then(sessionStorage.setItem('team', teams.ownerId))
+            const wheel = {
+                completed: false,
+                ownerId: user.id
+                }
+                this.props.addToAPI(wheel, "wheel")
+              this.props.history.push('/TeamForm');
               this.props.onRegister(user);
             });
         }
+
+          getInfo = () => {
+            return fetch(`${url}/teams?name=${this.state.query}`).then(e => e.json())
+              .then(({ data }) => {
+                  console.log("query", data)
+                this.setState({
+                  results: data
+                })
+              })
+          }
+        
+          handleInputChange = () => {
+            this.setState({
+              query: this.search.value
+            }, () => {
+              if (this.state.query && this.state.query.length > 1) {
+                if (this.state.query.length % 2 === 0) {
+                  this.getInfo()
+                }
+          }
+        }
+            )
+         }
+
+
+         
+
 
         
         render() {
@@ -73,7 +120,13 @@ export default class Register extends Component {
 
                 <br/>
 
-                <SearchBar />
+                <input
+                placeholder="Search for..."
+                ref={input => this.search = input}
+                onChange={this.handleInputChange}
+                />
+                <p>{this.state.query}</p>
+     
 
                  <br/>
                 <Button type='submit' color='teal' fluid size='large' >
@@ -91,37 +144,6 @@ export default class Register extends Component {
             </Message>
             </Grid.Column>
         </Grid>
-        )
-
-
-        //     <Segment placeholder className="login">
-        //         <Grid columns={2} relaxed='very' stackable>
-        //         <Grid.Column>
-        //             <Form onSubmit={this.handleLogin}>
-        //             <Form.Input onChange={this.handleFieldChange} id="user_name" icon='user' iconPosition='left' label='Username' placeholder='Username' />
-        //             <Form.Input onChange={this.handleFieldChange} id="password" icon='lock' iconPosition='left' label='Password' type='password' />
-
-        //             <Button content='Login' primary />
-        //             </Form>
-        //         </Grid.Column>
-
-        //         <Grid.Column verticalAlign='middle'>
-        //         <Modal size='tiny' trigger={<Button content='Sign up' icon='signup' size='big' />} >
-        //             <Modal.Header>Register</Modal.Header>
-        //             <Modal.Content>
-        //                 <Form onSubmit={this.handleRegister}>
-        //                     <Form.Input onChange={this.handleFieldChange} id="user_name" icon='user' iconPosition='left' label='Username' placeholder='Username' />
-        //                     <Form.Input onChange={this.handleFieldChange} id="email" icon='user' iconPosition='left' label='Email' placeholder='Email' />
-        //                     <Form.Input onChange={this.handleFieldChange} id="password" icon='lock' iconPosition='left' label='Password' type='password' />
-        //                     <Button content='Register' primary />
-        //                 </Form>
-        //             </Modal.Content>
-        // </Modal>
-        //         </Grid.Column>
-        //         </Grid>
-
-        //         <Divider vertical>Or</Divider>
-        //     </Segment>
-        
+        )       
     }
 }
