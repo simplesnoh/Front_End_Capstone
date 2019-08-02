@@ -1,107 +1,75 @@
 {
   "users": [
     {
-      "user_name": "mom",
-      "email": "mom@hotmail.com",
-      "password": "mom",
-      "icon": "",
-      "wins": "",
-      "loses": "",
-      "id": 1
-    },
-    {
-      "email": "joy@hotmail.com",
-      "username": "Joy",
-      "id": "0XO4mumjcufqO45iOOlv3QkHsvn2"
+      "email": "sydneycnoh@gmail.com",
+      "username": "Sydney",
+      "id": "AtRJli5oUZYwrNw74aLkr6YmriO2"
     }
   ],
   "tasks": [
     {
-      "name": "Tell Mo She's Great!",
+      "name": "Mow Lawn",
       "completed": false,
-      "ownerId": "JqRXZbK0BiPpFNqgligxFZQ3B4x2",
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
       "taskTypeId": 2,
-      "teamId": 10,
+      "teamId": 1,
+      "id": 1
+    },
+    {
+      "name": "Take Out Trash",
+      "completed": false,
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "taskTypeId": 2,
+      "teamId": 1,
+      "id": 2
+    },
+    {
+      "name": "Sweep",
+      "completed": false,
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "taskTypeId": 2,
+      "teamId": 1,
+      "id": 3
+    },
+    {
+      "name": "Mop",
+      "completed": false,
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "taskTypeId": 2,
+      "teamId": 1,
       "id": 4
     },
     {
-      "name": "Tell Joe He's Great",
+      "name": "Clean The Toilets",
       "completed": false,
-      "ownerId": "JqRXZbK0BiPpFNqgligxFZQ3B4x2",
-      "taskTypeId": 2,
-      "teamId": 10,
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "taskTypeId": 3,
+      "teamId": 1,
       "id": 5
-    },
-    {
-      "name": "Tell Jeff He's Awesome",
-      "completed": false,
-      "ownerId": "JqRXZbK0BiPpFNqgligxFZQ3B4x2",
-      "taskTypeId": 2,
-      "teamId": 10,
-      "id": 7
-    },
-    {
-      "name": "Pick up stuff",
-      "completed": false,
-      "ownerId": "JqRXZbK0BiPpFNqgligxFZQ3B4x2",
-      "taskTypeId": 2,
-      "teamId": 10,
-      "id": 8
-    },
-    {
-      "name": "Let the good times roll",
-      "completed": false,
-      "ownerId": "JqRXZbK0BiPpFNqgligxFZQ3B4x2",
-      "taskTypeId": 2,
-      "teamId": 10,
-      "id": 9
-    },
-    {
-      "name": "Take a break if this works",
-      "completed": false,
-      "ownerId": "0XO4mumjcufqO45iOOlv3QkHsvn2",
-      "taskTypeId": 2,
-      "teamId": 11,
-      "id": 10
-    },
-    {
-      "name": "Love someone",
-      "completed": false,
-      "ownerId": "0XO4mumjcufqO45iOOlv3QkHsvn2",
-      "taskTypeId": 2,
-      "teamId": 11,
-      "id": 11
-    },
-    {
-      "name": "Moop!",
-      "completed": false,
-      "ownerId": "0XO4mumjcufqO45iOOlv3QkHsvn2",
-      "taskTypeId": 2,
-      "teamId": 11,
-      "id": 13
     }
   ],
   "teams": [
     {
-      "ownerId": "0XO4mumjcufqO45iOOlv3QkHsvn2",
-      "id": 11
+      "name": "Awesome Sauce",
+      "id": 1,
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2"
     }
   ],
   "wheel": [
     {
       "completed": false,
-      "ownerId": "0XO4mumjcufqO45iOOlv3QkHsvn2",
-      "id": 23
+      "ownerId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "id": 2
     }
   ],
   "taskType": [
     {
-      "type": "regTask",
+      "type": "bonusTask",
       "id": 1,
       "points": 10
     },
     {
-      "type": "bonusTask",
+      "type": "regTask",
       "id": 2,
       "points": 20
     },
@@ -118,26 +86,18 @@
       "monthRoundId": 1
     }
   ],
-  "userPoints": [
-    {
-      "teamId": 1,
-      "wheelId": 1,
-      "points": 20,
-      "userId": 1,
-      "id": 1
-    }
-  ],
+  "userPoints": [],
   "teamRelationship": [
     {
-      "userId": 1,
-      "teamId": 1
+      "userId": "AtRJli5oUZYwrNw74aLkr6YmriO2",
+      "teamId": 1,
+      "id": 1
     }
   ],
   "monthRound": [
     {
-      "startTime": "",
-      "winnerId": "",
-      "teamId": ""
+      "teamId": 1,
+      "id": 1
     }
   ]
 }

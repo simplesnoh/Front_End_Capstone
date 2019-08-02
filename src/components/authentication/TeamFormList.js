@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import "./Login.css"
 import { List, Modal } from "semantic-ui-react";
 import TeamEditForm from './TeamEditForm'
 

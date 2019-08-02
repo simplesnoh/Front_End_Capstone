@@ -72,14 +72,7 @@ export default class Register extends Component {
             )
          }
 
-         makeWheel = () => {
-             const wheel = {
-                 completed: false,
-             }
-             this.props
-             .addToAPI(wheel, "wheel")
 
-         }
          
 
 
@@ -141,7 +134,7 @@ export default class Register extends Component {
                 </Button>
 
                 <br/>
-                <Button type='submit' color='teal' fluid size='large' onClick={this.makeWheel}>
+                <Button type='submit' color='teal' fluid size='large' >
                     Make Team
                 </Button>
                 </Segment>

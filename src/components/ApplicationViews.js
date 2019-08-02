@@ -6,6 +6,7 @@ import Login from "./authentication/Login"
 import Register from "./authentication/register"
 import { logout } from '../components/authorization/userManager';
 import TeamForm from '../components/authentication/TeamForm'
+import PrizePhoto from './authentication/PrizePhoto'
 
 
 export default class ApplicationViews extends Component {
@@ -89,6 +90,10 @@ export default class ApplicationViews extends Component {
 
         <Route path="/register" render={props => {
           return <Register {...props} teams={this.state.teams} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
+          }} />
+
+        <Route path="/PrizePhoto" render={props => {
+          return <PrizePhoto {...props} teams={this.state.teams} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
           }} />
 
       </React.Fragment>

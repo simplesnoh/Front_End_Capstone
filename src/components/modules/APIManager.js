@@ -44,8 +44,5 @@ export default Object.create(null, {
   }
 },
 
-  getWheelFromAPI: function(wheel) {
-
-  }
 
 })
