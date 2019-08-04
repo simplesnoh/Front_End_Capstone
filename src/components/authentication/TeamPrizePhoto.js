@@ -46,19 +46,10 @@ export default class PrizePhoto extends Component {
           photoUrl: url,
           id: sessionStorage.getItem("team")
         };
+        console.log("user", updatedUser)
         return updatedUser
       })
       .then((updatedUser) => this.props.updateAPI(updatedUser, "users"))
-        .then(() => {
-            const updatedWheel = {
-            id: this.props.wheel.id,
-            completed: this.props.wheel.completed,
-            ownerId: sessionStorage.getItem('team'),
-            teamId: this.props.teams.id
-        }
-        return updatedWheel
-        })
-        .then((updatedWheel) => this.props.updateAPI(updatedWheel, "wheel"))
         .then(() => {
             const userPrize = {
                 prize: this.state.prize,
@@ -70,7 +61,7 @@ export default class PrizePhoto extends Component {
         .then((userPrize) => this.props.addToAPI(userPrize, "userPrize"))
         .then(() => {
             const userPoints = {
-                teamId: this.props.teams.id,
+                teamId: this.sessionStorage.getItem('teamId'),
                 wheelId: this.props.wheel.id,
                 userId: sessionStorage.getItem('team'),
                 points: 0
@@ -91,6 +82,7 @@ export default class PrizePhoto extends Component {
   componentDidMount() {
     APIManager.get("users", sessionStorage.getItem("team"))
     .then(user => {
+        console.log(user)
       this.setState({
         email: user.email,
         username: user.username
@@ -99,6 +91,7 @@ export default class PrizePhoto extends Component {
   }
 
   render() {
+
     return (
       <Grid
         textAlign="center"

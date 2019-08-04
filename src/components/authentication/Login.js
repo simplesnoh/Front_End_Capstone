@@ -8,6 +8,8 @@ import { loginUser } from '../authorization/userManager';
 // get rid of weird space
 // add logo
 
+// FIXME: Need to add sessionstorage for login not local storage
+
 export default class Login extends Component {
 
     state = {

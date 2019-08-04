@@ -7,6 +7,7 @@ import Register from "./authentication/register"
 import { logout } from '../components/authorization/userManager';
 import TeamForm from '../components/authentication/TeamForm'
 import PrizePhoto from './authentication/PrizePhoto'
+import TeamPrizePhoto from './authentication/TeamPrizePhoto'
 
 
 export default class ApplicationViews extends Component {
@@ -66,34 +67,49 @@ export default class ApplicationViews extends Component {
       });
   };
 
-//FIXME: This onlogin/onRegister thing doesn't really do anything...
-//Also we need to authenticate on all windows
-
+  
+  //FIXME: This onlogin/onRegister thing doesn't really do anything...
+  //Also we need to authenticate on all windows
+  
   render() {
+    
     return (
       <React.Fragment>
         <Route path="/login" render={props => {
-          return <Login {...props} onLogin={(user) => this.setState({ user: user })} /*users={this.state.users} addUser={this.addToAPI}*/ />
+          return <Login {...props} onLogin={(user) => this.setState({ users: user })} /*users={this.state.users} addUser={this.addToAPI}*/ />
           }} />
-        <Route exact path="/" render={(props) => {
-            return this.state.user ? (
-              <Dashboard {...props} user={this.state.user} onLogout={logout} />
-            ) : (
-                <Redirect to="/login" />
-              )
+        
+        <Route exact path="/" render={props => {
+            // this.state.teamRelationship.forEach(relationship => {
+            //   if(relationship.ownerId === sessionStorage.getItem('team')){
+            //     sessionStorage.setItem('teamId', relationship.teamId)
+            //   }
+            // })
+            let task = this.state.tasks.find((task) => task.teamId === sessionStorage.getItem('teamId'))
+            return <Dashboard {...props} user={this.state.users} task={task} onLogout={logout} />
           }} />
 
         <Route path="/TeamForm" render={props => {
           let teams = this.state.teams.find((team => team.ownerId === sessionStorage.getItem('team')))
-          return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} deleteFromAPI={this.deleteFromAPI} updateAPI={this.updateAPI}/>
+          let wheel = this.state.wheel.find((wheel => wheel.ownerId === sessionStorage.getItem('team')))
+          return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} wheel={wheel} deleteFromAPI={this.deleteFromAPI} updateAPI={this.updateAPI}/>
         }} />
 
         <Route path="/register" render={props => {
-          return <Register {...props} teams={this.state.teams} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
+          let items = this.state.teams.map(team => {return { label: `${team.name}` } })
+          return <Register {...props} teams={this.state.teams} items={items} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
           }} />
 
         <Route path="/PrizePhoto" render={props => {
-          return <PrizePhoto {...props} teams={this.state.teams} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
+          let teams2 = this.state.teams.find((team => team.ownerId === sessionStorage.getItem('team')))
+          let wheel2 = this.state.wheel.find((wheel => wheel.ownerId === sessionStorage.getItem('team')))
+          return <PrizePhoto {...props} teams={teams2} wheel={wheel2} addToAPI={this.addToAPI} updateAPI={this.updateAPI} />
+          }} />
+
+        <Route path="/TeamPrizePhoto" render={props => {
+          let teams3 = this.state.teams.find((team => team.id === sessionStorage.getItem('teamId')))
+          let wheel3 = this.state.wheel.find((wheel => wheel.ownerId === sessionStorage.getItem('team')))
+          return <TeamPrizePhoto {...props} teams={teams3} wheel={wheel3} addToAPI={this.addToAPI} updateAPI={this.updateAPI} />
           }} />
 
       </React.Fragment>
