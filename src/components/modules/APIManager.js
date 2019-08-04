@@ -44,5 +44,19 @@ export default Object.create(null, {
   }
 },
 
+getMonthRound: {
+  value: function (teamId, entity) {
+  return fetch(`${remoteURL}/${entity}?teamId=${teamId}`)
+  .then(data => data.json())
+}
+},
+
+getTeam: {
+  value: function (teamName, entity) {
+  return fetch(`${remoteURL}/${entity}?name=${teamName}`)
+  .then(data => data.json())
+}
+},
 
 })
+

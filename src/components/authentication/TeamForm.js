@@ -55,12 +55,6 @@ export default class TeamForm extends Component {
     this.props
       .updateAPI(newTeam, "teams")
       .then(() => {
-        const monthRound = {
-          teamId: this.props.teams.id
-        };
-        return this.props.addToAPI(monthRound, "monthRound");
-      })
-      .then(() => {
         const punishmentTask = {
           name: this.state.punishment,
           completed: false,
@@ -78,7 +72,7 @@ export default class TeamForm extends Component {
         return this.props.addToAPI(teamRelationship, "teamRelationship");
       })
       .then(sessionStorage.setItem("members", this.state.value));
-    this.props.history.push("/Dashboard");
+    this.props.history.push("/PrizePhoto");
   };
 
   createTask = () => {
@@ -87,7 +81,8 @@ export default class TeamForm extends Component {
       completed: false,
       ownerId: sessionStorage.getItem("team"),
       taskTypeId: 2,
-      teamId: this.props.teams.id
+      teamId: this.props.teams.id,
+      wheelId: this.props.wheel.id
     };
     this.props.addToAPI(newTask, "tasks");
     this.setState({ tasks: newTask });
@@ -97,7 +92,7 @@ export default class TeamForm extends Component {
   render() {
     const { value, options } = this.state;
 
-    console.log("members", this.state.value);
+    console.log("whelId", this.props.wheel);
 
     return (
       <Grid

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button, Grid, Segment, Header, Container, Modal, Form, List } from 'semantic-ui-react' /*SN*/
+import { Segment } from 'semantic-ui-react' /*SN*/
+import TaskList from './TaskList'
 
 /*TODO:
 -link to file to make wheel, pass in tasks
@@ -18,9 +19,14 @@ export default class Dashboard extends Component{
 
 
   render(){
+
+    console.log("task", this.props.task)
+
         return(
       
-      <div>"Hello!"</div>
+      <div>
+        <TaskList />
+      </div>
 
 
         )
