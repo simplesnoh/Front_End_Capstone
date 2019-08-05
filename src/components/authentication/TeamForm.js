@@ -92,7 +92,7 @@ export default class TeamForm extends Component {
   render() {
     const { value, options } = this.state;
 
-    console.log("whelId", this.props.wheel);
+    console.log(this.props.teams)
 
     return (
       <Grid

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment } from 'semantic-ui-react' /*SN*/
+import { Button, Grid, Segment } from 'semantic-ui-react' /*SN*/
 import TaskList from './TaskList'
 
 /*TODO:
@@ -11,21 +11,33 @@ import TaskList from './TaskList'
 -Link to taskList component pass in your tasks
 */
 
-export default class Dashboard extends Component{
+export default class Dashboard extends Component {
 
   state = {  
    
   };
 
 
+
   render(){
 
-    console.log("task", this.props.task)
-
         return(
-      
+        
       <div>
-        <TaskList />
+        <Grid>
+          <Grid.Column>
+            <Segment>
+               <TaskList task={this.props.task} userPoints={this.props.userPoints} wheel={this.props.wheel} updateAPI={this.updateAPI}/>
+                
+
+{/* FIXME: Conditionally render this button for only the team owner */}
+
+      <Button color='teal' fluid size='medium'>
+          Stop Round!
+      </Button>
+      </Segment>
+      </Grid.Column>
+      </Grid>
       </div>
 
 

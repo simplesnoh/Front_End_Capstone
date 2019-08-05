@@ -61,7 +61,7 @@ export default class PrizePhoto extends Component {
         .then((userPrize) => this.props.addToAPI(userPrize, "userPrize"))
         .then(() => {
             const userPoints = {
-                teamId: this.sessionStorage.getItem('teamId'),
+                teamId: +this.sessionStorage.getItem('teamId'),
                 wheelId: this.props.wheel.id,
                 userId: sessionStorage.getItem('team'),
                 points: 0

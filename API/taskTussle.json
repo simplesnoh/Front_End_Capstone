@@ -109,7 +109,7 @@
     },
     {
       "name": "Wipe out sinks",
-      "completed": false,
+      "completed": true,
       "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
@@ -157,7 +157,8 @@
     {
       "id": 3,
       "completed": false,
-      "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2"
+      "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
+      "teamId": 4
     }
   ],
   "taskType": [

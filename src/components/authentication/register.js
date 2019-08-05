@@ -71,7 +71,7 @@ export default class Register extends Component {
                 console.log("user", user)
                 const teamRelationship = {
                     userId: user.id,
-                    teamId: sessionStorage.getItem('teamId')
+                    teamId: +sessionStorage.getItem('teamId')
                     }
                 sessionStorage.setItem('team', user.id)
                 return teamRelationship
