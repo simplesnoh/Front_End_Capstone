@@ -100,8 +100,6 @@ export default class PrizePhoto extends Component {
 
   render() {
 
-    console.log(this.props.teams)
-
     return (
       <Grid
         textAlign="center"

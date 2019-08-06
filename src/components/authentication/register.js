@@ -68,7 +68,6 @@ export default class Register extends Component {
                 return finalUser
             })
             .then((user) => {
-                console.log("user", user)
                 const teamRelationship = {
                     userId: user.id,
                     teamId: +sessionStorage.getItem('teamId')
@@ -84,7 +83,6 @@ export default class Register extends Component {
           getInfo = () => {
             return fetch(`${url}/teams?name=${this.state.query}`).then(e => e.json())
               .then(({ data }) => {
-                  console.log("query", data)
                 this.setState({
                   results: data
                 })

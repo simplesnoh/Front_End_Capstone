@@ -58,5 +58,12 @@ getTeam: {
 }
 },
 
+getFromTeamRelationship: {
+  value: function (teamId) {
+  return fetch(`${remoteURL}/teamRelationship?teamId=${teamId}&_expand=user`)
+  .then(data => data.json())
+}
+},
+
 })
 
