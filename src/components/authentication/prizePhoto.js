@@ -99,6 +99,7 @@ export default class PrizePhoto extends Component {
   }
 
   render() {
+
     return (
       <Grid
         textAlign="center"

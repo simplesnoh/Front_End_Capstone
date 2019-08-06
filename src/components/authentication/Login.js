@@ -28,6 +28,9 @@ export default class Login extends Component {
     
 
     render() {
+
+      console.log(sessionStorage.getItem('teamId'))
+
         return (
 
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
