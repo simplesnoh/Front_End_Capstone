@@ -23,38 +23,37 @@ export default class Dashboard extends Component{
         this.setState(stateToChange)
       };
     
-    handleNewRound = (evt) => {
-    evt.preventDefault();
-        const newPrize = {
-            prize: this.state.prize,
-            userId: this.state.userId,
-            wheelId: this.props.wheelId
-    };
-    this.props
-        .addToAPI(newPrize, "userPrize")
-        .then(() => {
-           const newUserPoints = {
-               teamId: sessionStorage.getItem('teamId'),
-               wheelId: this.props.wheelId,
-               points: 0,
-               userId: sessionStorage.getItem('team')
-           }
-        })
-        .then(() => {
-            this.props.tasks.map(task=>{
-                if(this.props.tasks.taskTypeId === 2){
-                    const updatedTask = {
-                        name: task.name,
-                        completed: false,
-                        wheelId: this.props.wheelId,
-                        taskTypeId: task.taskTypeId,
-                        teamId: task.teamId
-                    }
-                }
-            })
-        })
-        .then(() => this.props.handleClose())     
-        }
+    // handleNewRound = (evt) => {
+    // evt.preventDefault();
+    //     const newPrize = {
+    //         prize: this.state.prize,
+    //         userId: this.state.userId,
+    //         wheelId: ???
+    // };
+    // this.props
+    //     .addToAPI(newPrize, "userPrize")
+    //     .then(() => {
+    //        const newUserPoints = {
+    //            teamId: sessionStorage.getItem('teamId'),
+    //            wheelId: ???,
+    //            points: 0,
+    //            userId: sessionStorage.getItem('team')
+    //        }
+    //     })
+        // .then(() => {
+        //     this.props.tasks.map(task=>{
+        //         if(this.props.tasks.taskTypeId === 2){
+        //             const updatedTask = {
+        //                 name: task.name,
+        //                 completed: false,
+        //                 wheelId: ???,
+        //                 taskTypeId: task.taskTypeId,
+        //                 teamId: task.teamId
+        //             }
+        //         }
+        //     })
+    //     .then(() => this.props.handleClose())     
+    //     }
 
     componentDidMount() {
         APIManager.get("userPrize", this.props.userPrize.id)
@@ -63,15 +62,14 @@ export default class Dashboard extends Component{
                 prize: prize.prize,
                 userId: prize.userId,
                 id: prize.id
-            })
-        })
-        
+            });
+        });
         }
   
   
     render(){
 
-      
+        console.log(this.props.tasks)
           return (
           <div>
 

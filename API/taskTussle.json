@@ -107,6 +107,7 @@
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
+      "wheelId": 3,
       "id": 8
     },
     {
@@ -125,6 +126,7 @@
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 3,
       "teamId": 4,
+      "wheelId": 3,
       "id": 10
     }
   ],
@@ -159,6 +161,14 @@
     {
       "id": 3,
       "completed": false,
+      "gameEnded": true,
+      "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
+      "teamId": 4
+    },
+    {
+      "id": 4,
+      "completed": false,
+      "gameEnded": false,
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "teamId": 4
     }

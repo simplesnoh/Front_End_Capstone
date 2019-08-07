@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Button, Grid, Segment } from 'semantic-ui-react' /*SN*/
+import { Button, Grid, Segment, Modal } from 'semantic-ui-react' /*SN*/
 import TaskList from './TaskList'
 import UserPoints from './UserPoints'
-import NewPrize from '../widgets/NewPrize'
 import EORModal from "../widgets/EORModal"
+// import APIManager from '../modules/APIManager'
 
 /*TODO:
 -link to file to make wheel, pass in tasks
@@ -17,33 +17,61 @@ import EORModal from "../widgets/EORModal"
 export default class Dashboard extends Component {
 
   state = {  
-   
+   open: false
   };
 
+  handleOpen = () => {
+    this.setState({ open: true })
+  };
+
+  handleFirstClose = () => {
+      this.setState({ open: false })
+    };
+
+/*
+componentDidMount() => {
+  I need users
+  I need non crap tasks
+  let taskList = this.props.task.filter(task => task.taskTypeId === 2)
+  let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
+  let userList = []
+  userPoints.forEach(task => {
+    let users = this.props.users.filter(user => user.id === userPoints.ownerId)
+    userList.push(users)
+  })
+ let numGroups = userList.length
+ tasksPerGroup = taskList.length / numGroups
+ userList.forEach(user => {
+   for(i=0; i < namesPerGroup; i++){
+     randomTask = Math.floor(Math.random()*taskList.length)
+     if(taskList[randomTask]){
+      APIManager.getTaskByName(taskList[randomTask], this.props.wheel.Id)
+      .then(task => {
+        const addUserId {
+          name: task.name,
+          completed: task.completed,
+          userId: user.id,
+          ownerId: task.ownerId,
+          taskTypeId: task.taskTypeId,
+          teamId: task.teamId,
+          wheelId: task.wheelId,
+          id: task.id
+        }
+        this.props.updateAPI(addUserId, 'tasks'))
+        .then(() => taskList.splice(randomTask, 1))
+      })
+     }
+   }
+ })
+}
+*/
 
 
   render(){
 
-        return(
-        
-     <div>
-       <div>
-          {
-            this.props.task.filter(task => task.taskTypeId === 3)
-            .map(task => (
-            <EORModal users={this.props.users} userPoints={this.props.userPoints} userPrizes={this.props.userPrize} tasks={task} wheel={this.props.wheel} />
-            ))
-          }
+    console.log(this.props.wheel)
 
-              {/* {
-                this.props.userPrize.filter(prize => prize.wheelId === this.props.wheel.wheelId)
-                .filter(prize => prize.userId === sessionStorage.getItem('team'))
-                .map( prize => 
-              <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} />
-                )
-              } */}
-        
-           </div>
+        return(
            <div>
             <Segment>
               {
@@ -63,11 +91,18 @@ export default class Dashboard extends Component {
 
       
       </Segment>
-      <Button color='teal' fluid size='medium'>
-          Stop Round!
-      </Button>    
+
+      <Modal trigger={<Button color='teal' fluid size='medium' onClick={this.handleOpen} >Stop Round!</Button>} open={this.state.open} >
+      {
+        this.props.task.filter(task => task.taskTypeId === 3)
+        .map(task => (
+        <EORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} />
+        ))
+      }
+    </Modal>
+
+      
   
-      </div>
       </div>
         )
             }

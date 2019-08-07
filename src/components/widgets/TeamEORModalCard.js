@@ -36,7 +36,7 @@ renderImage = () => {
     return <Image src={crown} size="tiny" centered /> 
   }
   else{
-    return 
+    return <div></div>
   }
 }
 
@@ -44,24 +44,22 @@ renderImage = () => {
 
         return(
         
-          <React.Fragment>
+    <div>
         {
               this.props.users.filter(user => user.id === this.props.points.userId)
               .map(user => 
-                <React.Fragment>
-                  <div className="image" >
+                <div>
                   {
                     this.renderImage()
                   }
-                  </div>
-                <Image src={this.renderImage} size="tiny" centered /> 
+                    <Image src={this.renderImage} size="tiny" centered /> 
                 <Image src={user.photoUrl} size="tiny" circular centered />  
                 <div>{this.props.points.points}</div>
-                </React.Fragment>
+                </div>
               )
               
           }
-     </React.Fragment>
+    </div>
 
 
         )
