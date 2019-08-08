@@ -40,7 +40,7 @@ export default class Dashboard extends Component{
             this.props.tasks.forEach(task => {
                 const updatedtask ={
                     name: task.name,
-                    userId: task.userId,
+                    userId: " ",
                     completed: false,
                     ownerId: task.ownerId,
                     taskTypeId: task.taskTypeId,

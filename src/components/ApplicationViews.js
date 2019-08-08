@@ -40,29 +40,26 @@ export default class ApplicationViews extends Component {
     })
     let numGroups = userList.length
     let tasksPerGroup = taskList.length / numGroups
-    // console.log(tasksPerGroup)
-    // userList.forEach(user => {
-    // for(i=0; i < namesPerGroup; i++){
-    //   randomTask = Math.floor(Math.random()*taskList.length)
-    //   if(taskList[randomTask]){
-    //     APIManager.getTaskByName(taskList[randomTask], this.props.wheel.Id)
-    //     .then(task => {
-    //       const addUserId = {
-    //         name: task.name,
-    //         completed: task.completed,
-    //         userId: user.id,
-    //         ownerId: task.ownerId,
-    //         taskTypeId: task.taskTypeId,
-    //         teamId: task.teamId,
-    //         wheelId: task.wheelId,
-    //         id: task.id
-    //       }
-    //       // this.props.updateAPI(addUserId, 'tasks')})
-    //       console.log
-    //       .then(() => taskList.splice(randomTask, 1))
-    //     }
-    //   }
-    //   })
+    userList.forEach(user => {
+    for(let i = 0; i < tasksPerGroup; i++){
+      let randomTask = Math.floor(Math.random()*taskList.length)
+      if(taskList[randomTask]){
+        console.log(user.id)
+          const addUserId = {
+            name: taskList[randomTask].name,
+            completed: taskList[randomTask].completed,
+            userId: user.id,
+            ownerId: taskList[randomTask].ownerId,
+            taskTypeId: taskList[randomTask].taskTypeId,
+            teamId: taskList[randomTask].teamId,
+            wheelId: taskList[randomTask].wheelId,
+            id: taskList[randomTask].id
+          }
+          taskList.splice(randomTask, 1)
+          this.updateAPI(addUserId, 'tasks')
+      }
+      }
+    })
   }
 
 
@@ -79,7 +76,6 @@ export default class ApplicationViews extends Component {
     APIManager.all("teamRelationship").then(teamRelationship => (newState.teamRelationship = teamRelationship))
     // APIManager.getNewWheel('wheel', +sessionStorage.getItem('teamId')).then(newWheel => (newState.newWheel = newWheel))
     .then(() => this.setState(newState))
-    .then(() => this.randomizeTasks())
     }
 
     deleteFromAPI = (item, resource) =>
@@ -130,6 +126,7 @@ export default class ApplicationViews extends Component {
           let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
           let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
           let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
+          console.log(thisWheel)
           return <Dashboard {...props} task={thisTask} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} getNewWheel={(newWheel) => this.setState({ newWheel: newWheel })} />
           }} />
      
