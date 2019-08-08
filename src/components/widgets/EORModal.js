@@ -4,7 +4,7 @@ import { Grid, Button, Modal } from 'semantic-ui-react'
 import EORModalCard from "./EORModalCard" 
 import EORPrizes from "./EORPrizes"
 import NewPrize from '../widgets/NewPrize'
-
+import APIManager from '../modules/APIManager'
 
 
 export default class EORModal extends Component {
@@ -33,24 +33,29 @@ componentDidMount(){
 handleOpen = () => {
   this.setState({ open: true })
   const updatedWheel = 
-   {
-    id: this.props.wheel.id,
-    completed: this.props.wheel.completed,
-    gameEnded: true,
-    ownerId: this.props.wheel.ownerId,
-    teamId: this.props.wheel.teamId
-  }
+    {
+      id: this.props.wheel.id,
+      completed: false,
+      gameEnded: true,
+      closedModals: 0,
+      ownerId: this.props.wheel.ownerId,
+      teamId: this.props.wheel.teamId
+    }
   this.props.updateAPI(updatedWheel, 'wheel')
   .then(()=> {
     const newWheel = {
     completed: false,
+    gameEnded: false,
     teamId: +sessionStorage.getItem('teamId'),
     ownerId: sessionStorage.getItem('team'),
-    gameEnded: false
   }
-  this.props.addToAPI(newWheel, 'wheel')
-})
-};
+  return newWheel
+  })
+  .then((newWheel) => {
+    this.props.getNewWheel(newWheel)
+    this.props.addToAPI(newWheel, 'wheel')
+  })
+  };
 
 handleClose = () => {
     this.setState({ open: false })
@@ -97,7 +102,7 @@ handleClose = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} />
+      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} />
         )
       }
       </Modal>
@@ -108,18 +113,6 @@ handleClose = () => {
   }
 }
 
-{/* <Grid.Row columns={3}>
-      <Grid.Column>
-        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid> */}
 
 
 

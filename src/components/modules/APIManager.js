@@ -79,5 +79,20 @@ getTaskByName: {
 }
 },
 
+getNewWheel: {
+  value: function (entity, teamId) {
+  return fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
+  .then(data => data.json())
+}
+},
+
+getUserPointsNewWheel: {
+  value: function (entity, teamId) {
+  return fetch(`${remoteURL}/${entity}?wheelId=0&teamId=${teamId}`)
+  .then(data => data.json())
+}
+}
+
+
 })
 

@@ -1,9 +1,9 @@
 
 import React, { Component } from "react";
 import { Grid, Button, Modal } from 'semantic-ui-react'
-import EORModalCard from "./EORModalCard" 
-import EORPrizes from "./EORPrizes"
-import NewPrize from '../widgets/NewPrize'
+import TeamEORModalCard from "./TeamEORModalCard" 
+import TeamEORPrizes from "./TeamEORPrizes"
+import TeamNewPrize from '../widgets/TeamNewPrize'
 
 
 
@@ -52,7 +52,7 @@ handleClose = () => {
         this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id)
         .map(point => (
           <Grid.Column>
-        <EORModalCard users={this.props.users} points={point} tasks={this.props.task} min={this.state.minPoints} max={this.state.maxPoints} minNum={this.state.min} maxNum={this.state.max} />
+        <TeamEORModalCard users={this.props.users} points={point} tasks={this.props.task} min={this.state.minPoints} max={this.state.maxPoints} minNum={this.state.min} maxNum={this.state.max} />
         </Grid.Column>
         ))
       }
@@ -61,7 +61,7 @@ handleClose = () => {
 
       {
       this.state.maxPoints.map(points => (
-          <EORPrizes points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
+          <TeamEORPrizes points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
       ))
       }
       
@@ -73,7 +73,7 @@ handleClose = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} />
+      <TeamNewPrize users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} userPoints={this.props.userPoints} />
         )
       }
       </Modal>

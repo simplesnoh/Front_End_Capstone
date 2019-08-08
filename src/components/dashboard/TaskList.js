@@ -21,7 +21,6 @@ export default class TaskList extends Component{
         teamId: task.teamId,
         id: task.id
     }
-    console.log("task", thisTask)
     this.props.updateAPI(thisTask, "tasks")
     .then(()=> {
         let allPoints = this.props.userPoints.filter(points => points.wheelId === this.props.wheel.id )

@@ -161,14 +161,8 @@
     {
       "id": 3,
       "completed": false,
-      "gameEnded": true,
-      "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
-      "teamId": 4
-    },
-    {
-      "id": 4,
-      "completed": false,
       "gameEnded": false,
+      "closedModals": 0,
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "teamId": 4
     }
@@ -270,17 +264,17 @@
     },
     {
       "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
-      "teamId": "4",
+      "teamId": 4,
       "id": 3
     },
     {
       "userId": "IDGQbhqUFZPNZewMTQMdZV4vo9q2",
-      "teamId": "4",
+      "teamId": 4,
       "id": 4
     },
     {
       "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
-      "teamId": "4",
+      "teamId": 4,
       "id": 5
     }
   ]

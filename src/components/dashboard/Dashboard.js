@@ -36,7 +36,7 @@ componentDidMount() => {
   let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
   let userList = []
   userPoints.forEach(task => {
-    let users = this.props.users.filter(user => user.id === userPoints.ownerId)
+    let users = this.props.users.filter(user => user.id === userPoints.userId)
     userList.push(users)
   })
  let numGroups = userList.length
@@ -69,8 +69,6 @@ componentDidMount() => {
 
   render(){
 
-    console.log(this.props.wheel)
-
         return(
            <div>
             <Segment>
@@ -96,7 +94,7 @@ componentDidMount() => {
       {
         this.props.task.filter(task => task.taskTypeId === 3)
         .map(task => (
-        <EORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} />
+        <EORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} />
         ))
       }
     </Modal>

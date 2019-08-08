@@ -46,7 +46,6 @@ export default class PrizePhoto extends Component {
           photoUrl: url,
           id: sessionStorage.getItem("team")
         };
-        console.log("user", updatedUser)
         return updatedUser
       })
       .then((updatedUser) => this.props.updateAPI(updatedUser, "users"))
@@ -82,7 +81,6 @@ export default class PrizePhoto extends Component {
   componentDidMount() {
     APIManager.get("users", sessionStorage.getItem("team"))
     .then(user => {
-        console.log(user)
       this.setState({
         email: user.email,
         username: user.username

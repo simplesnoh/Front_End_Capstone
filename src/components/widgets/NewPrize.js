@@ -9,12 +9,24 @@ import APIManager from '../modules/APIManager'
 - sets prize
 */
 
+const remoteURL = "http://localhost:5002"
+
+export const getNewWheel = (entity,teamId) => {
+   fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
+    .then(data => data.json())
+    .then(data => { 
+        console.log("data", data)
+    })
+    .then(data => {
+        return data})
+}
 export default class Dashboard extends Component{
 
     state = {  
      prize: '',
      userId: '',
-     id: ''
+     id: '',
+     wheelId: ''
     };
 
     handleFieldChange = (event) => {
@@ -25,36 +37,71 @@ export default class Dashboard extends Component{
     
     handleNewRound = (evt) => {
     evt.preventDefault();
-        const newPrize = {
-            prize: this.state.prize,
-            userId: this.state.userId,
-            wheelId: this.props.wheelId
-    };
-    this.props
-        .addToAPI(newPrize, "userPrize")
-        .then(() => {
-           const newUserPoints = {
-               teamId: sessionStorage.getItem('teamId'),
-               wheelId: this.props.wheelId,
-               points: 0,
-               userId: sessionStorage.getItem('team')
-           }
-        })
-        .then(() => {
-            this.props.tasks.map(task=>{
-                if(this.props.tasks.taskTypeId === 2){
-                    const updatedTask = {
-                        name: task.name,
-                        completed: false,
-                        wheelId: this.props.wheelId,
-                        taskTypeId: task.taskTypeId,
-                        teamId: task.teamId
-                    }
-                }
-            })
-        })
-        .then(() => this.props.handleClose())     
+        const newUserPoints = {
+            teamId: +sessionStorage.getItem('teamId'),
+            wheelId: 0,
+            points: 0,
+            userId: sessionStorage.getItem('team')
         }
+    this.props.addToAPI(newUserPoints, 'userPoints')
+    .then(() => {
+    const newUserPrize = {
+        prize: this.state.prize,
+        userId: this.state.userId
+        }
+    this.props.addToAPI(newUserPrize, 'userPrize')
+    })
+    .then(()=> getNewWheel('wheel', +sessionStorage.getItem('teamId')))
+    .then(() => {
+        console.log("newWheel", this.state.wheelId)
+        let newTasks = []
+        this.props.tasks.forEach(task => {
+            task.wheelId = this.state.wheelId
+            task.completed = false
+            task.userId = ""
+            newTasks.push(task)
+        });
+        console.log("New Task List", newTasks)
+    })
+
+    // .then(()=> {
+    //     this.props.tasks.map(task => {
+    //         let newTask = {
+    //             name: task.name,
+    //             completed: false,
+    //             userId: task.userId,
+    //             taskTypeId: task.taskTypeId,
+    //             teamId: task.teamId,
+    //             // wheelId: wheel.id,
+    //             id: task.id
+    //         }
+    //     .then(()=> this.props.updateAPI(newTask, 'tasks'))
+    //     })
+    // })
+    .then(() => this.props.handleClose())     
+    }
+
+
+// .then(()=> APIManager.getCompletedWheel())
+// .then(wheel => {
+//   const newUserPoints = {
+//       teamId: sessionStorage.getItem('teamId'),
+//       wheelId: wheel.id,
+//       points: 0,
+//       userId: sessionStorage.getItem('team')
+//   }
+//   this.props.addToAPI(newUserPoints, 'userPoints')
+//   return wheel
+//  .then((wheel) => {
+//   const newUserPrize = {
+//     prize: this.state.prize,
+//     userId: this.state.userId,
+//     wheelId: wheel.id
+//   }
+//   this.props.addToAPI(newUserPrize, 'userPrize')
+
+
+
 
     componentDidMount() {
         APIManager.get("userPrize", this.props.userPrize.id)
@@ -62,16 +109,15 @@ export default class Dashboard extends Component{
             this.setState({
                 prize: prize.prize,
                 userId: prize.userId,
+                wheelId: prize.wheelId,
                 id: prize.id
             })
         })
-        
-        }
+    }
   
   
     render(){
 
-      
           return (
           <div>
 

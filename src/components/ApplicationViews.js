@@ -21,7 +21,8 @@ export default class ApplicationViews extends Component {
     taskType: [],
     userPrize: [],
     userPoints: [],
-    teamRelationship: []
+    teamRelationship: [],
+    newWheel: []
   };
 
 
@@ -36,6 +37,7 @@ export default class ApplicationViews extends Component {
     APIManager.all("userPrize").then(userPrize => (newState.userPrize = userPrize));
     APIManager.all("userPoints").then(userPoints => (newState.userPoints = userPoints));
     APIManager.all("teamRelationship").then(teamRelationship => (newState.teamRelationship = teamRelationship))
+    // APIManager.getNewWheel('wheel', +sessionStorage.getItem('teamId')).then(newWheel => (newState.newWheel = newWheel))
     .then(() => this.setState(newState));
     }
 
@@ -65,7 +67,49 @@ export default class ApplicationViews extends Component {
           [resource]: item
         });
       });
+
+
+    // randomizeTasks = () => {
+    //   let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
+    //   let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
+    //   let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
+
+    //   let taskList = this.props.task.filter(task => task.taskTypeId === 2)
+    //   let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
+    //   let userList = []
+    //   userPoints.forEach(task => {
+    //     let users = this.props.users.filter(user => user.id === userPoints.userId)
+    //     userList.push(users)
+    //   })
+    // let numGroups = userList.length
+    // tasksPerGroup = taskList.length / numGroups
+    // userList.forEach(user => {
+    //   for(i=0; i < namesPerGroup; i++){
+    //     randomTask = Math.floor(Math.random()*taskList.length)
+    //     if(taskList[randomTask]){
+    //       APIManager.getTaskByName(taskList[randomTask], this.props.wheel.Id)
+    //       .then(task => {
+    //         const addUserId {
+    //           name: task.name,
+    //           completed: task.completed,
+    //           userId: user.id,
+    //           ownerId: task.ownerId,
+    //           taskTypeId: task.taskTypeId,
+    //           teamId: task.teamId,
+    //           wheelId: task.wheelId,
+    //           id: task.id
+    //         }
+    //         this.props.updateAPI(addUserId, 'tasks'))
+    //         .then(() => taskList.splice(randomTask, 1))
+    //       })
+    //     }
+    //   }
+    // })
+
+
+    
   };
+
 
   
   //FIXME: This onlogin/onRegister thing doesn't really do anything...
@@ -76,24 +120,18 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         <Route path="/login" render={props => {
-          return <Login {...props} onLogin={(user) => this.setState({ users: user })} />
+          return <Login {...props} onLogin={(user) => this.setState({ users: user })} teamRelationship={this.state.teamRelationship} />
           }} />
         
         <Route exact path="/" render={props => {
-            this.state.teamRelationship.forEach(relationship => {
-              if(relationship.userId === sessionStorage.getItem('team')){
-                sessionStorage.setItem('teamId', relationship.teamId)
-              }
-            })
-            let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
-            let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
+          let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
+          let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
           let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
-          return <Dashboard {...props} task={thisTask} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} />
+          return <Dashboard {...props} task={thisTask} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} getNewWheel={(newWheel) => this.setState({ newWheel: newWheel })} />
 
           }} />
      
         <Route path="/TeamForm" render={props => {
-          console.log("state", this.state.teams)
           let teams = this.state.teams.find((team => team.ownerId === sessionStorage.getItem('team')))
           let wheel = this.state.wheel.find((wheel => wheel.ownerId === sessionStorage.getItem('team')))
           return <TeamForm {...props} addToAPI={this.addToAPI} tasks={this.state.tasks} teams={teams} wheel={wheel} deleteFromAPI={this.deleteFromAPI} updateAPI={this.updateAPI}/>
@@ -111,10 +149,11 @@ export default class ApplicationViews extends Component {
           }} />
 
         <Route path="/TeamPrizePhoto" render={props => {
-          let teams3 = this.state.teams.find((team => team.id === sessionStorage.getItem('teamId')))
+          let teams3 = this.state.teams.find((team => team.id === +sessionStorage.getItem('teamId')))
           let wheel3 = this.state.wheel.find((wheel => wheel.teamId === +sessionStorage.getItem('teamId')))
           return <TeamPrizePhoto {...props} teams={teams3} wheel={wheel3} addToAPI={this.addToAPI} updateAPI={this.updateAPI} />
           }} />
+
 
       </React.Fragment>
     );

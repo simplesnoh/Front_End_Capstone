@@ -57,7 +57,6 @@ export default class TeamEditForm extends Component {
     }
 
     render() {
-        console.log(this.state.name)
         return (
             <React.Fragment>
                  <Modal.Header>Edit Task</Modal.Header>
