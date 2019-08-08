@@ -11,15 +11,7 @@ import APIManager from '../modules/APIManager'
 
 const remoteURL = "http://localhost:5002"
 
-export const getNewWheel = (entity,teamId) => {
-   fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
-    .then(data => data.json())
-    .then(data => { 
-        console.log("data", data)
-    })
-    .then(data => {
-        return data})
-}
+
 export default class Dashboard extends Component{
 
     state = {  
@@ -29,6 +21,43 @@ export default class Dashboard extends Component{
      wheelId: ''
     };
 
+    getNewWheel = (entity,teamId) => {
+        fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
+         .then(data => data.json())
+         .then(wheel => {
+            console.log(wheel)
+            const newUserPoints = {
+                teamId: +sessionStorage.getItem('teamId'),
+                wheelId: wheel[0].id ,
+                points: 0,
+                userId: sessionStorage.getItem('team')
+            }
+            this.props.addToAPI(newUserPoints, 'userPoints')
+            return wheel
+            })
+            .then(wheel => {
+            let newTasks = []
+            this.props.tasks.forEach(task => {
+                const updatedtask ={
+                    name: task.name,
+                    userId: task.userId,
+                    completed: false,
+                    ownerId: task.ownerId,
+                    taskTypeId: task.taskTypeId,
+                    teamId: task.teamId,
+                    wheelId: wheel[0].id 
+                }
+                newTasks.push(updatedtask)
+               return updatedtask
+            });
+            return newTasks
+        })
+        .then(newTasks => {
+            newTasks.forEach(task => this.props.addToAPI(task, 'tasks'))
+        })
+        .then(() => this.props.handleClose())
+     }
+
     handleFieldChange = (event) => {
         const stateToChange = {};
         stateToChange[event.target.id] = event.target.value
@@ -37,70 +66,14 @@ export default class Dashboard extends Component{
     
     handleNewRound = (evt) => {
     evt.preventDefault();
-        const newUserPoints = {
-            teamId: +sessionStorage.getItem('teamId'),
-            wheelId: 0,
-            points: 0,
-            userId: sessionStorage.getItem('team')
-        }
-    this.props.addToAPI(newUserPoints, 'userPoints')
-    .then(() => {
     const newUserPrize = {
         prize: this.state.prize,
         userId: this.state.userId
         }
-    this.props.addToAPI(newUserPrize, 'userPrize')
-    })
-    .then(()=> getNewWheel('wheel', +sessionStorage.getItem('teamId')))
-    .then(() => {
-        console.log("newWheel", this.state.wheelId)
-        let newTasks = []
-        this.props.tasks.forEach(task => {
-            task.wheelId = this.state.wheelId
-            task.completed = false
-            task.userId = ""
-            newTasks.push(task)
-        });
-        console.log("New Task List", newTasks)
-    })
-
-    // .then(()=> {
-    //     this.props.tasks.map(task => {
-    //         let newTask = {
-    //             name: task.name,
-    //             completed: false,
-    //             userId: task.userId,
-    //             taskTypeId: task.taskTypeId,
-    //             teamId: task.teamId,
-    //             // wheelId: wheel.id,
-    //             id: task.id
-    //         }
-    //     .then(()=> this.props.updateAPI(newTask, 'tasks'))
-    //     })
-    // })
-    .then(() => this.props.handleClose())     
+    this.props.updateAPI(newUserPrize, 'userPrize')
+    .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId'))
+    )     
     }
-
-
-// .then(()=> APIManager.getCompletedWheel())
-// .then(wheel => {
-//   const newUserPoints = {
-//       teamId: sessionStorage.getItem('teamId'),
-//       wheelId: wheel.id,
-//       points: 0,
-//       userId: sessionStorage.getItem('team')
-//   }
-//   this.props.addToAPI(newUserPoints, 'userPoints')
-//   return wheel
-//  .then((wheel) => {
-//   const newUserPrize = {
-//     prize: this.state.prize,
-//     userId: this.state.userId,
-//     wheelId: wheel.id
-//   }
-//   this.props.addToAPI(newUserPrize, 'userPrize')
-
-
 
 
     componentDidMount() {

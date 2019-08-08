@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Image } from 'semantic-ui-react' 
 
 
-export default class EORPrizes extends Component {
+export default class TeamEORPrize extends Component {
 
 state= {
 

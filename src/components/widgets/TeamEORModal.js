@@ -2,12 +2,12 @@
 import React, { Component } from "react";
 import { Grid, Button, Modal } from 'semantic-ui-react'
 import TeamEORModalCard from "./TeamEORModalCard" 
-import TeamEORPrizes from "./TeamEORPrizes"
+import TeamEORPrize from "./TeamEORPrize"
 import TeamNewPrize from '../widgets/TeamNewPrize'
 
 
 
-export default class EORModal extends Component {
+export default class TeamEORModal extends Component {
 
 state= {
   maxPoints: [],
@@ -61,7 +61,7 @@ handleClose = () => {
 
       {
       this.state.maxPoints.map(points => (
-          <TeamEORPrizes points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
+          <TeamEORPrize points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
       ))
       }
       

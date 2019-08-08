@@ -23,7 +23,7 @@ import crown from './crown.png'
 -filter for users with team .map over users
 -display users and points
 */
-export default class EORModal extends Component {
+export default class TeamEORModalCard extends Component {
 
 state= {
 

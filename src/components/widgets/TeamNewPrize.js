@@ -9,13 +9,31 @@ import APIManager from '../modules/APIManager'
 - sets prize
 */
 
-export default class Dashboard extends Component{
+const remoteURL = "http://localhost:5002"
+
+export default class TeamNewPrize extends Component{
 
     state = {  
      prize: '',
      userId: '',
      id: ''
     };
+
+    getNewWheel = (entity,teamId) => {
+        fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
+         .then(data => data.json())
+         .then(wheel => {
+            console.log(wheel)
+            const newUserPoints = {
+                teamId: +sessionStorage.getItem('teamId'),
+                wheelId: wheel[0].id ,
+                points: 0,
+                userId: sessionStorage.getItem('team')
+            }
+            this.props.addToAPI(newUserPoints, 'userPoints')
+            })
+        .then(() => this.props.handleClose())
+     }
 
     handleFieldChange = (event) => {
         const stateToChange = {};
@@ -25,34 +43,13 @@ export default class Dashboard extends Component{
     
       handleNewRound = (evt) => {
         evt.preventDefault();
-            const newUserPoints = {
-                teamId: +sessionStorage.getItem('teamId'),
-                wheelId: 0,
-                points: 0,
-                userId: sessionStorage.getItem('team')
-            }
-        this.props.addToAPI(newUserPoints, 'userPoints')
-        .then(() => {
         const newUserPrize = {
             prize: this.state.prize,
             userId: this.state.userId
             }
         this.props.addToAPI(newUserPrize, 'userPrize')
-        })
-        // .then(()=> {
-        //     this.props.tasks.map(task => {
-        //         let newTask = {
-        //             name: task.name,
-        //             completed: false,
-        //             userId: task.userId,
-        //             taskTypeId: task.taskTypeId,
-        //             teamId: task.teamId,
-        //             // wheelId: wheel.id,
-        //             id: task.id
-        //         }
-        //     .then(()=> this.props.updateAPI(newTask, 'tasks'))
-        //     })
-        // })
+        .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId')))     
+      
         .then(() => {
             let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
             let userList = []
@@ -61,7 +58,6 @@ export default class Dashboard extends Component{
                 userList.push(users)
             })
             if(this.props.wheel.closedModals === userList.length-1){
-
                 const updatedWheel = {
                     id: this.props.wheel.id,
                     completed: true,
@@ -70,9 +66,12 @@ export default class Dashboard extends Component{
                     ownerId: this.props.wheel.ownerId,
                     teamId: this.props.wheel.teamId
                 }
+                this.props.updateAPI(updatedWheel, 'wheel')
+                .then(() => this.props.handleClose())
+            }else{
+                //launch modal telling them to wait for teammates
             }
-        })
-        .then(() => this.props.handleClose())     
+        }) 
         }
     
 

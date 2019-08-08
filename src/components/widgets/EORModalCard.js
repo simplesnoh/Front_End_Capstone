@@ -4,10 +4,6 @@ import { Image } from 'semantic-ui-react'
 import poop from './poop.png'
 import crown from './crown.png'
 
-
-
-
-
 /*TODO:
 -Put cute symbol in
 -needs to get users & points
@@ -23,7 +19,7 @@ import crown from './crown.png'
 -filter for users with team .map over users
 -display users and points
 */
-export default class EORModal extends Component {
+export default class EORModalCard extends Component {
 
 state= {
 
