@@ -25,9 +25,6 @@ import crown from './crown.png'
 */
 export default class TeamEORModalCard extends Component {
 
-state= {
-
-}
 
 renderImage = () => {
   if(this.props.points.points === this.props.minNum ){
@@ -36,7 +33,7 @@ renderImage = () => {
     return <Image src={crown} size="tiny" centered /> 
   }
   else{
-    return <div></div>
+    return 
   }
 }
 
@@ -44,22 +41,24 @@ renderImage = () => {
 
         return(
         
-    <div>
+       <React.Fragment>
         {
               this.props.users.filter(user => user.id === this.props.points.userId)
               .map(user => 
-                <div>
+                <React.Fragment>
+                  <div className="image" >
                   {
                     this.renderImage()
                   }
-                    <Image src={this.renderImage} size="tiny" centered /> 
+                  </div>
+                <Image src={this.renderImage} size="tiny" centered /> 
                 <Image src={user.photoUrl} size="tiny" circular centered />  
                 <div>{this.props.points.points}</div>
-                </div>
+                </React.Fragment>
               )
               
           }
-    </div>
+     </React.Fragment>
 
 
         )

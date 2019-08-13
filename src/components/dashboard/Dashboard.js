@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Grid, Segment, Modal } from 'semantic-ui-react' /*SN*/
+import { Button, Segment, Modal } from 'semantic-ui-react' /*SN*/
 import TaskList from './TaskList'
 import UserPoints from './UserPoints'
 import EORModal from "../widgets/EORModal"
@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
 
   state = {  
    open: false,
-  //  endModal: true,
+   endModal: true,
   };
 
   handleOpen = () => {
@@ -33,7 +33,7 @@ export default class Dashboard extends Component {
 
 
   render(){
-    console.log(this.props.wheel)
+    console.log(this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id))
     if (this.props.wheel !== undefined){
         return(
            <div>
@@ -48,9 +48,12 @@ export default class Dashboard extends Component {
 
             <Segment>
               {
+                this.props.task.length >= 1 ?
                 this.props.task.filter(task => task.userId === sessionStorage.getItem('team'))
                 .map(task => <TaskList task={task} userPoints={this.props.userPoints} wheel={this.props.wheel} updateAPI={this.props.updateAPI}/>)
-              }
+              :
+                <div>Please Wait For Team Mates!</div>
+            }
 {/* FIXME: Conditionally render this button for only the team owner */}
 
       
@@ -66,16 +69,16 @@ export default class Dashboard extends Component {
     </Modal>
 
       {
-        // this.props.wheel.gameEnded === true ?
-      //   <Modal open={this.state.endModal}>
-      //   {
-      //     this.props.task.filter(task => task.taskTypeId === 3)
-      //     .map(task => (
-      //     <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} />
-      //     ))
-      //   }
-      // </Modal>
-          // : <div></div>
+        this.props.wheel.gameEnded === true && this.props.wheel.ownerId !== sessionStorage.getItem('team') ?
+        <Modal open={this.state.endModal}>
+        {
+          this.props.task.filter(task => task.taskTypeId === 3)
+          .map(task => (
+          <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} />
+          ))
+        }
+      </Modal>
+          : <div></div>
       }
       
   

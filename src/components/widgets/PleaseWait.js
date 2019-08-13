@@ -11,13 +11,6 @@ handleOpen = () => {
   this.setState({ open: true })
   };
 
-// handleClose = () => {
-//     this.props.handleClose()
-//   };
-
-
-
-
   render(){
    
         return(

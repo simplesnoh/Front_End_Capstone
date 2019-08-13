@@ -13,7 +13,7 @@ import PleaseWait from './PleaseWait'
 const remoteURL = "http://localhost:5002"
 
 
-export default class Dashboard extends Component{
+export default class NewPrize extends Component{
 
     state = {  
      open: false,

@@ -46,8 +46,10 @@ handleClose = () => {
    
         return(
         
-     <div>
-       <h1>Time's Up!</h1>
+      <React.Fragment>
+      <Grid divided='vertically'>
+      <h1>Time's Up!</h1>
+      <Grid.Row columns={5}>
       {
         this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id)
         .map(point => (
@@ -56,6 +58,8 @@ handleClose = () => {
         </Grid.Column>
         ))
       }
+      </Grid.Row>
+      </Grid>
 
       <h2>This Week's Prize or Prizes: </h2>
 
@@ -65,7 +69,8 @@ handleClose = () => {
       ))
       }
       
-      <h2>Crap Task Is: {this.props.tasks.name}</h2>
+      <h2>Crap Task Is:</h2>
+      <h2> {this.props.tasks.name}</h2>
       
 
       <Modal trigger={<Button color='teal' fluid size='medium' onClick={this.handleOpen}> Pick New Prize</Button>  } open={this.state.open} >
@@ -73,12 +78,11 @@ handleClose = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <TeamNewPrize users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} userPoints={this.props.userPoints} />
+      <TeamNewPrize users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} userPoints={this.props.userPoints} />
         )
       }
-      </Modal>
-
-      </div>
+       </Modal>
+      </React.Fragment>
 
 
         )

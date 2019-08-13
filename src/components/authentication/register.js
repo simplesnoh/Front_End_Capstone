@@ -56,7 +56,20 @@ export default class Register extends Component {
         submitWithTeam = (event) => {
             event.preventDefault();
             APIManager.getTeam(this.state.value, "teams")
-            .then(team => sessionStorage.setItem("teamId", team[0].id))
+            .then(team => {
+                sessionStorage.setItem("teamId", team[0].id)
+                return team
+            })
+            .then((team) => {
+                const updateTeam = {
+                    name: team[0].name,
+                    id: team[0].id,
+                    ownerId: team[0].ownerId,
+                    teamMemberTotal: team[0].teamMemberTotal,
+                    teamMemberAdd: team[0].teamMemberAdd +1
+                }
+                this.props.updateAPI(updateTeam, 'teams')
+            })
             .then(() => {
                 const user = {
                     email: this.state.email,

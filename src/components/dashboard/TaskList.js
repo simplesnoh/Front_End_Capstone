@@ -42,7 +42,6 @@ export default class TaskList extends Component{
   }
 
   render(){
-      if(this.props.task.length >= 1){
         return(
             <React.Fragment>
                  <List key={this.props.task.id} divided relaxed >
@@ -58,10 +57,5 @@ export default class TaskList extends Component{
                     </List>
             </React.Fragment>
         )
-      }
-      else { return(
-        <div>Please Wait For Team Mates!</div>
-      )
-      }
         }
     }

@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
 import {
   Button,
   Form,
   Grid,
   Header,
-  Message,
   Segment
 } from "semantic-ui-react";
 import TeamFormList from "./TeamFormList";
-import { thisExpression } from "@babel/types";
 
 /*TODO:
  -Team name input
@@ -49,8 +46,10 @@ export default class TeamForm extends Component {
   handleSubmit = () => {
     const newTeam = {
       name: this.state.teamName,
+      ownerId: this.props.teams.ownerId,
+      teamMemberTotal: this.state.value,
+      teamMemberAdd: 1,
       id: this.props.teams.id,
-      ownerId: this.props.teams.ownerId
     };
     this.props
       .updateAPI(newTeam, "teams")
@@ -79,6 +78,7 @@ export default class TeamForm extends Component {
     const newTask = {
       name: this.state.task,
       completed: false,
+      userId: "",
       ownerId: sessionStorage.getItem("team"),
       taskTypeId: 2,
       teamId: this.props.teams.id,

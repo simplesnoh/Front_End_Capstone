@@ -1,13 +1,9 @@
 
 import React, { Component } from "react";
-import { Image } from 'semantic-ui-react' 
+
 
 
 export default class EORPrizes extends Component {
-
-state= {
-
-}
 
   render(){
 

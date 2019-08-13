@@ -13,11 +13,11 @@ state= {
 
         return(
         
-      <div>
+      <React.Fragment>
           {
               this.props.users.filter(user => user.id === this.props.points.userId)
               .map(user => 
-                  <div>
+                <div key={user.id} >
                 <Label>{user.username}</Label>
    
                 <ProgressBar task={this.props.tasks} allUsers={this.props.users} points={this.props.points} user={user} />
@@ -27,7 +27,7 @@ state= {
               )
               
           }
-    </div>
+     </React.Fragment>
 
 
         )

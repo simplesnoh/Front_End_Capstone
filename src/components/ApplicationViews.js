@@ -1,10 +1,9 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import Dashboard from "./dashboard/Dashboard";
 import APIManager from "./modules/APIManager";
 import Login from "./authentication/Login"
 import Register from "./authentication/register"
-import { logout } from '../components/authorization/userManager';
 import TeamForm from '../components/authentication/TeamForm'
 import PrizePhoto from './authentication/PrizePhoto'
 import TeamPrizePhoto from './authentication/TeamPrizePhoto'
@@ -26,15 +25,13 @@ export default class ApplicationViews extends Component {
   };
 
   randomizeTasks = () => {
-    let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
-    let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
     let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
     let taskList = thisTask.filter(task => task.taskTypeId === 2)
     let userPoints = this.state.userPoints.filter(points => points.teamId === +sessionStorage.getItem('teamId'))
     let userList = []
     userPoints.forEach(userPoints => {
       this.state.users.filter(user => user.id === userPoints.userId)
-      .map(user => {
+      .forEach(user => {
         userList.push(user)
       })
     })
@@ -126,7 +123,6 @@ export default class ApplicationViews extends Component {
           let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
           let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
           let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
-          console.log(thisWheel)
           return <Dashboard {...props} task={thisTask} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} getNewWheel={(newWheel) => this.setState({ newWheel: newWheel })} />
           }} />
      
@@ -138,7 +134,7 @@ export default class ApplicationViews extends Component {
 
         <Route path="/register" render={props => {
           let items = this.state.teams.map(team => {return { label: `${team.name}` } })
-          return <Register {...props} teams={this.state.teams} items={items} addToAPI={this.addToAPI} onRegister={(user) => this.setState({ user: user })} />
+          return <Register {...props} teams={this.state.teams} items={items} addToAPI={this.addToAPI} updateAPI={this.updateAPI} onRegister={(user) => this.setState({ user: user })} />
           }} />
 
         <Route path="/PrizePhoto" render={props => {
@@ -150,7 +146,7 @@ export default class ApplicationViews extends Component {
         <Route path="/TeamPrizePhoto" render={props => {
           let teams3 = this.state.teams.find((team => team.id === +sessionStorage.getItem('teamId')))
           let wheel3 = this.state.wheel.find((wheel => wheel.teamId === +sessionStorage.getItem('teamId')))
-          return <TeamPrizePhoto {...props} teams={teams3} wheel={wheel3} addToAPI={this.addToAPI} updateAPI={this.updateAPI} />
+          return <TeamPrizePhoto {...props} teams={teams3} wheel={wheel3} addToAPI={this.addToAPI} updateAPI={this.updateAPI} randomizeTasks={this.randomizeTasks} />
           }} />
 
 

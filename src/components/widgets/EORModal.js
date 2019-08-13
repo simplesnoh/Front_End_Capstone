@@ -4,7 +4,7 @@ import { Grid, Button, Modal } from 'semantic-ui-react'
 import EORModalCard from "./EORModalCard" 
 import EORPrizes from "./EORPrizes"
 import NewPrize from '../widgets/NewPrize'
-import APIManager from '../modules/APIManager'
+
 
 
 export default class EORModal extends Component {

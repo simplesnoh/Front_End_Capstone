@@ -21,9 +21,6 @@ import crown from './crown.png'
 */
 export default class EORModalCard extends Component {
 
-state= {
-
-}
 
 renderImage = () => {
   if(this.props.points.points === this.props.minNum ){

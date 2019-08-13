@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Form } from 'semantic-ui-react' 
+import { Form, Modal } from 'semantic-ui-react' 
 import APIManager from '../modules/APIManager'
+import PleaseWait from './PleaseWait'
 
 /*TODO:
 - Add cute photo
@@ -14,6 +15,7 @@ const remoteURL = "http://localhost:5002"
 export default class TeamNewPrize extends Component{
 
     state = {  
+    open: false,
      prize: '',
      userId: '',
      id: ''
@@ -23,7 +25,6 @@ export default class TeamNewPrize extends Component{
         fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
          .then(data => data.json())
          .then(wheel => {
-            console.log(wheel)
             const newUserPoints = {
                 teamId: +sessionStorage.getItem('teamId'),
                 wheelId: wheel[0].id ,
@@ -32,7 +33,6 @@ export default class TeamNewPrize extends Component{
             }
             this.props.addToAPI(newUserPoints, 'userPoints')
             })
-        .then(() => this.props.handleClose())
      }
 
     handleFieldChange = (event) => {
@@ -49,7 +49,6 @@ export default class TeamNewPrize extends Component{
             }
         this.props.addToAPI(newUserPrize, 'userPrize')
         .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId')))     
-      
         .then(() => {
             let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
             let userList = []
@@ -61,16 +60,18 @@ export default class TeamNewPrize extends Component{
                 const updatedWheel = {
                     id: this.props.wheel.id,
                     completed: true,
-                    gameEnded: this.props.wheel.gameEnded,
+                    gameEnded: false,
                     closedModals: this.props.wheel.closedModals,
                     ownerId: this.props.wheel.ownerId,
                     teamId: this.props.wheel.teamId
                 }
                 this.props.updateAPI(updatedWheel, 'wheel')
-                //add in randomize function
-                .then(() => this.props.handleClose())
+                .then(() => {
+                    this.props.randomizeTasks()
+                    this.props.handleClose()
+                })
             }else{
-                //launch modal telling them to wait for teammates
+                this.setState({open:true})
             }
         }) 
         }
@@ -97,7 +98,9 @@ export default class TeamNewPrize extends Component{
           <Form.Group widths='equal'>
             <Form.Field>
             <Form.Input fluid onChange={this.handleFieldChange} id="prize" label='Pick A New Prize' value={this.state.prize} />
-            <Form.Button onClick={this.handleNewRound}>Submit</Form.Button>
+            <Modal trigger={<Form.Button onClick={this.handleNewRound}>Submit</Form.Button>} open={this.state.open}>
+                <PleaseWait handleClose={this.props.handleClose} />
+            </Modal>
            </Form.Field>
         </Form.Group>
         </Form>

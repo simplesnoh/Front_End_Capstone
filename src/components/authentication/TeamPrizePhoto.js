@@ -77,7 +77,14 @@ export default class TeamPrizePhoto extends Component {
             return userPoints
         })
         .then((userPoints) => this.props.addToAPI(userPoints, "userPoints"))
-        .then(this.props.history.push('/'))
+        .then(() => {
+          if(this.props.teamMemberTotal === this.props.teamMemberAdd) {
+            this.props.randomizeTasks()
+            this.props.history.push('/')
+          } else {
+          this.props.history.push('/')
+          }
+        })
       })
     )
   })
@@ -93,8 +100,6 @@ export default class TeamPrizePhoto extends Component {
 
 
   render() {
-
- 
 
     return (
       <Grid
