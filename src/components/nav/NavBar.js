@@ -4,7 +4,6 @@ import 'semantic-ui-css/semantic.min.css'
 import {
     Container,
     Dropdown,
-    Image,
     Menu
   } from 'semantic-ui-react'
 

@@ -18,7 +18,7 @@ import "firebase/storage";
 - send us to dashboard
 */
 
-export default class PrizePhoto extends Component {
+export default class TeamPrizePhoto extends Component {
   storageRef = firebase.storage().ref("profile_images");
 
   constructor(props) {
@@ -36,17 +36,25 @@ export default class PrizePhoto extends Component {
 
 
   submitForm = () => {
-    this.storageRef
+    APIManager.get("users", sessionStorage.getItem("team"))
+    .then(user => {
+      console.log(user)
+      this.setState({
+        email: user.email,
+        username: user.username
+      },( () => {
+        this.storageRef
       .put(this.state.otherFile)
       .then((data) => data.ref.getDownloadURL())
       .then((url) => {
+        console.log("submit", this.state.email)
+        console.log("submit", this.state.username)
         const updatedUser = {
           email: this.state.email,
           username: this.state.username,
           photoUrl: url,
           id: sessionStorage.getItem("team")
         };
-        console.log("user", updatedUser)
         return updatedUser
       })
       .then((updatedUser) => this.props.updateAPI(updatedUser, "users"))
@@ -61,7 +69,7 @@ export default class PrizePhoto extends Component {
         .then((userPrize) => this.props.addToAPI(userPrize, "userPrize"))
         .then(() => {
             const userPoints = {
-                teamId: +this.sessionStorage.getItem('teamId'),
+                teamId: +sessionStorage.getItem('teamId'),
                 wheelId: this.props.wheel.id,
                 userId: sessionStorage.getItem('team'),
                 points: 0
@@ -69,8 +77,19 @@ export default class PrizePhoto extends Component {
             return userPoints
         })
         .then((userPoints) => this.props.addToAPI(userPoints, "userPoints"))
-        .then(this.props.history.push('/'))
-  };
+        .then(() => {
+          if(this.props.teamMemberTotal === this.props.teamMemberAdd) {
+            this.props.randomizeTasks()
+            this.props.history.push('/')
+          } else {
+          this.props.history.push('/')
+          }
+        })
+      })
+    )
+  })
+}
+    
 
   handleChange(event) {
     this.setState({
@@ -79,16 +98,6 @@ export default class PrizePhoto extends Component {
     });
   }
 
-  componentDidMount() {
-    APIManager.get("users", sessionStorage.getItem("team"))
-    .then(user => {
-        console.log(user)
-      this.setState({
-        email: user.email,
-        username: user.username
-      });
-    });
-  }
 
   render() {
 

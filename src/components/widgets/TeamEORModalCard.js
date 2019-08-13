@@ -4,6 +4,10 @@ import { Image } from 'semantic-ui-react'
 import poop from './poop.png'
 import crown from './crown.png'
 
+
+
+
+
 /*TODO:
 -Put cute symbol in
 -needs to get users & points
@@ -19,7 +23,7 @@ import crown from './crown.png'
 -filter for users with team .map over users
 -display users and points
 */
-export default class EORModalCard extends Component {
+export default class TeamEORModalCard extends Component {
 
 
 renderImage = () => {
@@ -37,7 +41,7 @@ renderImage = () => {
 
         return(
         
-          <React.Fragment>
+       <React.Fragment>
         {
               this.props.users.filter(user => user.id === this.props.points.userId)
               .map(user => 

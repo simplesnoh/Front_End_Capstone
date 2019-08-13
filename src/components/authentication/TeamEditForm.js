@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "./Login.css"
-import { Modal, Form, Button } from "semantic-ui-react"
+import { List, Modal, Form, Button } from "semantic-ui-react"
 import APIManager from '../modules/APIManager'
 
 
@@ -17,7 +17,8 @@ export default class TeamEditForm extends Component {
 
     state = {
      newTask: "",
-     name: ""
+     name: "",
+     open: false
       }
 
       handleFieldChange = (event) => {
@@ -38,9 +39,16 @@ export default class TeamEditForm extends Component {
     };
     this.props
         .updateAPI(editedTask, "tasks")
-        .then(() => this.props.handleClose())     
+        .then(() => this.handleClose())     
      }
-    
+
+     handleOpen = () => {
+        this.setState({ open: true })
+      };
+  
+      handleClose = () => {
+          this.setState({ open: false })
+        };
 
     componentDidMount() {
     APIManager.get("tasks", this.props.task.id)
@@ -57,18 +65,18 @@ export default class TeamEditForm extends Component {
     }
 
     render() {
-        console.log(this.state.name)
+        console.log(this.props.task)
         return (
-            <React.Fragment>
+            <Modal trigger={<List.Icon name='edit outline' verticalAlign='middle' onClick={this.handleOpen} />} open={this.state.open} >
                  <Modal.Header>Edit Task</Modal.Header>
             <Modal.Content>
             <Form>
                 <Form.Input onChange={this.handleFieldChange} id="name" label='Task' value={this.state.name} />
                 <Button content='Edit' primary onClick={this.handleEditTask} />
-                <Button content='Cancel' primary onClick={this.props.handleClose} />
+                <Button content='Cancel' primary onClick={this.handleClose} />
             </Form>
             </Modal.Content>
-          </React.Fragment>
+          </Modal>
         )
     }
 }

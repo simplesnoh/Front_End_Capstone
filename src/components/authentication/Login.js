@@ -21,6 +21,12 @@ export default class Login extends Component {
         loginUser(this.state.email, this.state.password)
           .then((user) => {
             this.props.onLogin(user);
+            sessionStorage.setItem('team', user.id)
+            this.props.teamRelationship.forEach(relationship => {
+              if(relationship.userId === user.id) {
+                sessionStorage.setItem('teamId', relationship.teamId)
+              }
+            })
             this.props.history.push('/');
           });
       }
@@ -29,7 +35,7 @@ export default class Login extends Component {
 
     render() {
 
-      console.log(sessionStorage.getItem('teamId'))
+     
 
         return (
 

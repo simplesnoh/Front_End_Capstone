@@ -12,22 +12,19 @@ import PleaseWait from './PleaseWait'
 
 const remoteURL = "http://localhost:5002"
 
-
-export default class NewPrize extends Component{
+export default class TeamNewPrize extends Component{
 
     state = {  
-     open: false,
+    open: false,
      prize: '',
      userId: '',
-     id: '',
-     wheelId: ''
+     id: ''
     };
 
     getNewWheel = (entity,teamId) => {
         fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
          .then(data => data.json())
          .then(wheel => {
-            console.log(wheel)
             const newUserPoints = {
                 teamId: +sessionStorage.getItem('teamId'),
                 wheelId: wheel[0].id ,
@@ -35,38 +32,7 @@ export default class NewPrize extends Component{
                 userId: sessionStorage.getItem('team')
             }
             this.props.addToAPI(newUserPoints, 'userPoints')
-            return wheel
             })
-            .then((wheel) => {
-                 const newUserPrize = {
-                prize: this.state.prize,
-                userId: this.state.userId,
-                wheelId: wheel[0].id,
-                }
-            this.props.addToAPI(newUserPrize, 'userPrize')
-            return wheel
-            })
-            .then((wheel) => {
-            let newTasks = []
-            this.props.tasks.forEach(task => {
-                const updatedtask ={
-                    name: task.name,
-                    userId: " ",
-                    completed: false,
-                    ownerId: task.ownerId,
-                    taskTypeId: task.taskTypeId,
-                    teamId: task.teamId,
-                    wheelId: wheel[0].id 
-                }
-                newTasks.push(updatedtask)
-               return updatedtask
-            });
-            return newTasks
-        })
-        .then(newTasks => {
-            newTasks.forEach(task => this.props.addToAPI(task, 'tasks'))
-        })
-        .then(()=> this.setState({open:true}))
      }
 
     handleFieldChange = (event) => {
@@ -75,11 +41,41 @@ export default class NewPrize extends Component{
         this.setState(stateToChange)
       };
     
-    handleNewRound = (evt) => {
-    evt.preventDefault()
-    this.getNewWheel('wheel', +sessionStorage.getItem('teamId'))   
-    }
-
+      handleNewRound = (evt) => {
+        evt.preventDefault();
+        const newUserPrize = {
+            prize: this.state.prize,
+            userId: this.state.userId
+            }
+        this.props.addToAPI(newUserPrize, 'userPrize')
+        .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId')))     
+        .then(() => {
+            let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
+            let userList = []
+            userPoints.forEach(task => {
+                let users = this.props.users.filter(user => user.id === userPoints.userId)
+                userList.push(users)
+            })
+            if(this.props.wheel.closedModals === userList.length-1){
+                const updatedWheel = {
+                    id: this.props.wheel.id,
+                    completed: true,
+                    gameEnded: false,
+                    closedModals: this.props.wheel.closedModals,
+                    ownerId: this.props.wheel.ownerId,
+                    teamId: this.props.wheel.teamId
+                }
+                this.props.updateAPI(updatedWheel, 'wheel')
+                .then(() => {
+                    this.props.randomizeTasks()
+                    this.props.handleClose()
+                })
+            }else{
+                this.setState({open:true})
+            }
+        }) 
+        }
+    
 
     componentDidMount() {
         APIManager.get("userPrize", this.props.userPrize.id)
@@ -87,11 +83,10 @@ export default class NewPrize extends Component{
             this.setState({
                 prize: prize.prize,
                 userId: prize.userId,
-                wheelId: prize.wheelId,
                 id: prize.id
-            })
-        })
-    }
+            });
+        });
+        }
   
   
     render(){

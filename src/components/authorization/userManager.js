@@ -1,6 +1,5 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth'
-import ApplicationViews from '../ApplicationViews'
 
 const url = "http://localhost:5002";
 
@@ -9,7 +8,6 @@ const setUserInLocalStorage = (user) => {
 }
 
 export const saveUserToJsonServer = (user) => {
-  console.log("API", user)
     return fetch(`${url}/users`, {
         method: "POST",
         headers: {

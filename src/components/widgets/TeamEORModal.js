@@ -1,13 +1,13 @@
 
 import React, { Component } from "react";
 import { Grid, Button, Modal } from 'semantic-ui-react'
-import EORModalCard from "./EORModalCard" 
-import EORPrizes from "./EORPrizes"
-import NewPrize from '../widgets/NewPrize'
+import TeamEORModalCard from "./TeamEORModalCard" 
+import TeamEORPrize from "./TeamEORPrize"
+import TeamNewPrize from '../widgets/TeamNewPrize'
 
 
 
-export default class EORModal extends Component {
+export default class TeamEORModal extends Component {
 
 state= {
   maxPoints: [],
@@ -32,30 +32,14 @@ componentDidMount(){
 
 handleOpen = () => {
   this.setState({ open: true })
-  const updatedWheel = 
-    {
-      id: this.props.wheel.id,
-      completed: false,
-      gameEnded: true,
-      closedModals: 0,
-      ownerId: this.props.wheel.ownerId,
-      teamId: this.props.wheel.teamId
-    }
-  this.props.updateAPI(updatedWheel, 'wheel')
-  .then(()=> {
-    const newWheel = {
-    completed: false,
-    gameEnded: false,
-    teamId: +sessionStorage.getItem('teamId'),
-    ownerId: sessionStorage.getItem('team'),
-  }
-  return newWheel
-  })
-  .then((newWheel) => {
-    this.props.getNewWheel(newWheel)
-    this.props.addToAPI(newWheel, 'wheel')
-  })
+};
+
+handleClose = () => {
+    this.setState({ open: false })
+    this.props.handleFirstClose()
   };
+
+
 
 
   render(){
@@ -63,26 +47,25 @@ handleOpen = () => {
         return(
         
       <React.Fragment>
-       <Grid divided='vertically'>
-       <h1>Time's Up!</h1>
-       <Grid.Row columns={5}>
-       
+      <Grid divided='vertically'>
+      <h1>Time's Up!</h1>
+      <Grid.Row columns={5}>
       {
         this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id)
         .map(point => (
-        <Grid.Column>
-        <EORModalCard users={this.props.users} points={point} tasks={this.props.task} min={this.state.minPoints} max={this.state.maxPoints} minNum={this.state.min} maxNum={this.state.max} />
+          <Grid.Column>
+        <TeamEORModalCard users={this.props.users} points={point} tasks={this.props.task} min={this.state.minPoints} max={this.state.maxPoints} minNum={this.state.min} maxNum={this.state.max} />
         </Grid.Column>
         ))
       }
       </Grid.Row>
       </Grid>
 
-     
       <h2>This Week's Prize or Prizes: </h2>
+
       {
       this.state.maxPoints.map(points => (
-          <EORPrizes points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
+          <TeamEORPrize points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
       ))
       }
       
@@ -95,17 +78,13 @@ handleOpen = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} />
+      <TeamNewPrize users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} userPoints={this.props.userPoints} />
         )
       }
-      </Modal>
+       </Modal>
       </React.Fragment>
 
 
         )
   }
 }
-
-
-
-

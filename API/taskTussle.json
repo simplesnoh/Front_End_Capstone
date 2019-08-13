@@ -29,6 +29,24 @@
       "username": "Stache",
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/tasktue.appspot.com/o/profile_images?alt=media&token=52ee5cd7-ae30-42ef-b719-5f8570e17879",
       "id": "O0D99gD3iSfGipGgc8Sy3BsH9Y62"
+    },
+    {
+      "email": "joe@gmail.com",
+      "username": "Joe",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/tasktue.appspot.com/o/profile_images?alt=media&token=1731e6a0-edfb-4d00-aea1-c0bff20db9ff",
+      "id": "4k6lLktOwyPE0OyVQFB14TiuhCI3"
+    },
+    {
+      "email": "allison@apple.com",
+      "username": "Allison",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/tasktue.appspot.com/o/profile_images?alt=media&token=843de0ff-e041-4b59-b7b3-44374c3832df",
+      "id": "2ZPzRHej3bRsFcbaIQszRuLXI7I2"
+    },
+    {
+      "email": "suzie@gmail.com",
+      "username": "Suzie",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/tasktue.appspot.com/o/profile_images?alt=media&token=abfe847f-4d5f-4dae-9d31-01bfb3864426",
+      "id": "GDwltHYFIATLchxBuLINPLFToqC3"
     }
   ],
   "tasks": [
@@ -42,8 +60,8 @@
     },
     {
       "name": "Clean litter box",
-      "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "completed": false,
+      "userId": "IDGQbhqUFZPNZewMTQMdZV4vo9q2",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
@@ -52,8 +70,8 @@
     },
     {
       "name": "Sweep",
-      "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "completed": false,
+      "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
@@ -63,7 +81,7 @@
     {
       "name": "Mow lawn",
       "completed": false,
-      "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
+      "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
@@ -72,18 +90,17 @@
     },
     {
       "name": "Dust",
-      "completed": false,
-      "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
+      "completed": true,
+      "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
-      "wheelId": 3,
       "id": 5
     },
     {
       "name": "Empty dishwasher",
       "completed": false,
-      "userId": "IDGQbhqUFZPNZewMTQMdZV4vo9q2",
+      "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
@@ -102,8 +119,8 @@
     },
     {
       "name": "Water plants",
-      "completed": true,
-      "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
+      "completed": false,
+      "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 2,
       "teamId": 4,
@@ -125,7 +142,137 @@
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "taskTypeId": 3,
       "teamId": 4,
+      "wheelId": 3,
       "id": 10
+    },
+    {
+      "name": "Sweep",
+      "completed": false,
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 11
+    },
+    {
+      "name": "Mop",
+      "completed": false,
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 12
+    },
+    {
+      "name": "Clean sinks",
+      "completed": false,
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 13
+    },
+    {
+      "name": "Clean the litter box",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 14
+    },
+    {
+      "name": "Pull weeds",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 15
+    },
+    {
+      "name": "Dust",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 16
+    },
+    {
+      "name": "Empty Dishwasher",
+      "completed": false,
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 17
+    },
+    {
+      "name": "Take out trash",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 18
+    },
+    {
+      "name": "Mow the lawn",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 19
+    },
+    {
+      "name": "Clean glass shower",
+      "completed": false,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 20
+    },
+    {
+      "name": "Clean windows/mirrors",
+      "completed": false,
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 21
+    },
+    {
+      "name": "Vacuum",
+      "completed": false,
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 22
+    },
+    {
+      "name": "Clean up dog poop",
+      "completed": false,
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "taskTypeId": 3,
+      "teamId": 5,
+      "wheelId": 4,
+      "id": 23
     }
   ],
   "teams": [
@@ -148,6 +295,13 @@
       "name": "Peanut",
       "id": 4,
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2"
+    },
+    {
+      "name": "DevLyfe",
+      "id": 5,
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "teamMemberTotal": 3,
+      "teamMemberAdd": 3
     }
   ],
   "wheel": [
@@ -159,8 +313,17 @@
     {
       "id": 3,
       "completed": false,
+      "gameEnded": false,
+      "closedModals": 0,
       "ownerId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
       "teamId": 4
+    },
+    {
+      "id": 4,
+      "completed": false,
+      "gameEnded": false,
+      "ownerId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "teamId": 5
     }
   ],
   "taskType": [
@@ -189,22 +352,44 @@
     {
       "prize": "Group bike ride",
       "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
+      "wheelId": 3,
       "id": 2
     },
     {
       "prize": "New bone",
       "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
+      "wheelId": 3,
       "id": 3
     },
     {
       "prize": "We get rid of the dog",
       "userId": "IDGQbhqUFZPNZewMTQMdZV4vo9q2",
+      "wheelId": 3,
       "id": 4
     },
     {
       "prize": "Dibs on all sun",
       "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
+      "wheelId": 3,
       "id": 5
+    },
+    {
+      "prize": "We all play the longest board game I own TO THE END",
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "wheelId": 4,
+      "id": 6
+    },
+    {
+      "prize": "We dance!",
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "wheelId": 4,
+      "id": 7
+    },
+    {
+      "prize": "Eat lobster",
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "wheelId": 4,
+      "id": 8
     }
   ],
   "userPoints": [
@@ -222,7 +407,7 @@
       "teamId": 4,
       "wheelId": 3,
       "userId": "YkWiYK9vKbZHM1rkonq2JkM6U1f2",
-      "points": 20,
+      "points": 80,
       "id": 3
     },
     {
@@ -245,6 +430,27 @@
       "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
       "points": 50,
       "id": 6
+    },
+    {
+      "teamId": 5,
+      "wheelId": 4,
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "points": 0,
+      "id": 7
+    },
+    {
+      "teamId": 5,
+      "wheelId": 4,
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "points": 0,
+      "id": 8
+    },
+    {
+      "teamId": 5,
+      "wheelId": 4,
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "points": 0,
+      "id": 9
     }
   ],
   "teamRelationship": [
@@ -260,18 +466,33 @@
     },
     {
       "userId": "QOYgAtiiwVVOe1cdJP8WHnLzT0E2",
-      "teamId": "4",
+      "teamId": 4,
       "id": 3
     },
     {
       "userId": "IDGQbhqUFZPNZewMTQMdZV4vo9q2",
-      "teamId": "4",
+      "teamId": 4,
       "id": 4
     },
     {
       "userId": "O0D99gD3iSfGipGgc8Sy3BsH9Y62",
-      "teamId": "4",
+      "teamId": 4,
       "id": 5
+    },
+    {
+      "userId": "4k6lLktOwyPE0OyVQFB14TiuhCI3",
+      "teamId": 5,
+      "id": 6
+    },
+    {
+      "userId": "2ZPzRHej3bRsFcbaIQszRuLXI7I2",
+      "teamId": 5,
+      "id": 7
+    },
+    {
+      "userId": "GDwltHYFIATLchxBuLINPLFToqC3",
+      "teamId": 5,
+      "id": 8
     }
   ]
 }

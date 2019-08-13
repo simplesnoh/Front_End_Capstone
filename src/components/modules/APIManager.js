@@ -65,5 +65,34 @@ getFromTeamRelationship: {
 }
 },
 
+getWheelUsingTeamId: {
+  value: function (teamId) {
+  return fetch(`${remoteURL}/wheel?teamId=${teamId}&completed=false`)
+  .then(data => data.json())
+}
+},
+
+getTaskByName: {
+  value: function (name, wheelId) {
+  return fetch(`${remoteURL}/tasks?name=${name}&wheelId=${wheelId}`)
+  .then(data => data.json())
+}
+},
+
+getNewWheel: {
+  value: function (entity, teamId) {
+  return fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
+  .then(data => data.json())
+}
+},
+
+getUserPointsNewWheel: {
+  value: function (entity, teamId) {
+  return fetch(`${remoteURL}/${entity}?wheelId=0&teamId=${teamId}`)
+  .then(data => data.json())
+}
+}
+
+
 })
 
