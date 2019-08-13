@@ -67,6 +67,7 @@ export default class TeamNewPrize extends Component{
                     teamId: this.props.wheel.teamId
                 }
                 this.props.updateAPI(updatedWheel, 'wheel')
+                //add in randomize function
                 .then(() => this.props.handleClose())
             }else{
                 //launch modal telling them to wait for teammates

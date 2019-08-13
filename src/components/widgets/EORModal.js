@@ -57,13 +57,6 @@ handleOpen = () => {
   })
   };
 
-handleClose = () => {
-    this.setState({ open: false })
-    this.props.handleFirstClose()
-  };
-
-
-
 
   render(){
    
@@ -87,14 +80,14 @@ handleClose = () => {
 
      
       <h2>This Week's Prize or Prizes: </h2>
-
       {
       this.state.maxPoints.map(points => (
           <EORPrizes points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
       ))
       }
       
-      <h2>Crap Task Is: {this.props.tasks.name}</h2>
+      <h2>Crap Task Is:</h2>
+      <h2> {this.props.tasks.name}</h2>
       
 
       <Modal trigger={<Button color='teal' fluid size='medium' onClick={this.handleOpen}> Pick New Prize</Button>  } open={this.state.open} >
@@ -102,7 +95,7 @@ handleClose = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.handleClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} />
+      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} />
         )
       }
       </Modal>

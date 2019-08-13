@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
 
   state = {  
    open: false,
-   endModal: true,
+  //  endModal: true,
   };
 
   handleOpen = () => {
@@ -66,16 +66,16 @@ export default class Dashboard extends Component {
     </Modal>
 
       {
-        this.props.wheel.gameEnded === true ?
-        <Modal open={this.state.endModal}>
-        {
-          this.props.task.filter(task => task.taskTypeId === 3)
-          .map(task => (
-          <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} />
-          ))
-        }
-      </Modal>
-          : <div></div>
+        // this.props.wheel.gameEnded === true ?
+      //   <Modal open={this.state.endModal}>
+      //   {
+      //     this.props.task.filter(task => task.taskTypeId === 3)
+      //     .map(task => (
+      //     <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} />
+      //     ))
+      //   }
+      // </Modal>
+          // : <div></div>
       }
       
   

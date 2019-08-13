@@ -92,6 +92,8 @@ export default class TeamForm extends Component {
   render() {
     const { value, options } = this.state;
 
+    console.log("name", this.state.teamName)
+
     return (
       <Grid
         textAlign="center"

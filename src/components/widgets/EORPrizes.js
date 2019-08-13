@@ -17,7 +17,7 @@ state= {
         {
               this.props.userPrizes.filter(userPrize => userPrize.userId === this.props.points.userId)
               .map(userPrize => 
-                <h4>{userPrize.prize}</h4>
+                <h2>{userPrize.prize}</h2>
               )
               
           }

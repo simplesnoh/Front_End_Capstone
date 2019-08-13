@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Form } from 'semantic-ui-react' 
+import { Form, Modal } from 'semantic-ui-react' 
 import APIManager from '../modules/APIManager'
+import PleaseWait from './PleaseWait'
 
 /*TODO:
 - Add cute photo
@@ -15,6 +16,7 @@ const remoteURL = "http://localhost:5002"
 export default class Dashboard extends Component{
 
     state = {  
+     open: false,
      prize: '',
      userId: '',
      id: '',
@@ -35,7 +37,16 @@ export default class Dashboard extends Component{
             this.props.addToAPI(newUserPoints, 'userPoints')
             return wheel
             })
-            .then(wheel => {
+            .then((wheel) => {
+                 const newUserPrize = {
+                prize: this.state.prize,
+                userId: this.state.userId,
+                wheelId: wheel[0].id,
+                }
+            this.props.addToAPI(newUserPrize, 'userPrize')
+            return wheel
+            })
+            .then((wheel) => {
             let newTasks = []
             this.props.tasks.forEach(task => {
                 const updatedtask ={
@@ -55,7 +66,7 @@ export default class Dashboard extends Component{
         .then(newTasks => {
             newTasks.forEach(task => this.props.addToAPI(task, 'tasks'))
         })
-        .then(() => this.props.handleClose())
+        .then(()=> this.setState({open:true}))
      }
 
     handleFieldChange = (event) => {
@@ -65,14 +76,8 @@ export default class Dashboard extends Component{
       };
     
     handleNewRound = (evt) => {
-    evt.preventDefault();
-    const newUserPrize = {
-        prize: this.state.prize,
-        userId: this.state.userId
-        }
-    this.props.updateAPI(newUserPrize, 'userPrize')
-    .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId'))
-    )     
+    evt.preventDefault()
+    this.getNewWheel('wheel', +sessionStorage.getItem('teamId'))   
     }
 
 
@@ -98,7 +103,9 @@ export default class Dashboard extends Component{
           <Form.Group widths='equal'>
             <Form.Field>
             <Form.Input fluid onChange={this.handleFieldChange} id="prize" label='Pick A New Prize' value={this.state.prize} />
-            <Form.Button onClick={this.handleNewRound}>Submit</Form.Button>
+            <Modal trigger={<Form.Button onClick={this.handleNewRound}>Submit</Form.Button>} open={this.state.open}>
+                <PleaseWait handleClose={this.props.handleClose} />
+            </Modal>
            </Form.Field>
         </Form.Group>
         </Form>
