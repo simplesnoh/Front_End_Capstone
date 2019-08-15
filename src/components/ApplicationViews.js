@@ -75,11 +75,10 @@ export default class ApplicationViews extends Component {
     .then(() => this.setState(newState))
     }
 
-    deleteFromAPI = (item, resource) =>
-    APIManager.delete(item, resource)
+    deleteFromAPI = (id, resource) =>
+    APIManager.delete(id, resource)
    .then(APIManager.all(resource))
    .then(item => {
-    //  this.props.history.push("/");
      this.setState({ [resource]: item });
    }); 
 
@@ -116,7 +115,7 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         <Route path="/login" render={props => {
-          return <Login {...props} onLogin={(user) => this.setState({ users: user })} teamRelationship={this.state.teamRelationship} />
+          return <Login {...props} teamRelationship={this.state.teamRelationship} />
           }} />
         
         <Route exact path="/" render={props => {

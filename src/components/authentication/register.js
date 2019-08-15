@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import { Button, Form, Grid, Header, Message, Segment, Label } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Label, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import logo from './logo.png'
 import { register } from '../authorization/userManager';
 import Autocomplete from 'react-autocomplete'
 import './register.css'
@@ -101,6 +102,7 @@ export default class Register extends Component {
                 })
               })
           }
+
         
           handleInputChange = () => {
             this.setState({
@@ -127,9 +129,10 @@ export default class Register extends Component {
         return (
 
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 450 }}>
+            <Grid.Column style={{ maxWidth: 400 }}>
+            <Image src={logo} size='medium' centered /> 
             <Header as='h2' color='teal' textAlign='center'>
-                {/* <Image src='/logo.png' />*/} Register User
+             Register User
             </Header>
             <Form size='large' >
                 <Segment stacked>
@@ -157,6 +160,7 @@ export default class Register extends Component {
                 <br/>
                 <br/>
                 <Autocomplete
+                wrapperStyle={{ position: 'relative', display: 'inline-block' }}
                 getItemValue={(item) => item.label}
                 items={this.props.items}
                 renderItem={(item, isHighlighted) =>
@@ -164,10 +168,16 @@ export default class Register extends Component {
                     {item.label}
                     </div>
                 }
+                renderMenu={children => (
+                    <div className="menu">
+                    {children}
+                    </div>
+                )}
                 value={this.state.value}
                 onChange={(e) => this.setState({value : e.target.value})}
                 onSelect={(val) => this.setState({value : val})}
                 />
+                
 
                 <br/>
                 <br/>

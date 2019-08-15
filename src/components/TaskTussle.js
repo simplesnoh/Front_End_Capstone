@@ -7,7 +7,7 @@ class TaskTussle extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        {/* <NavBar /> */}
         <ApplicationViews />
       </React.Fragment>
     );

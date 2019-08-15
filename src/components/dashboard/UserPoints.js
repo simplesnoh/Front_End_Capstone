@@ -5,11 +5,9 @@ import ProgressBar from './ProgressBar'
 
 export default class UserPoints extends Component {
 
-state= {
-
-}
-
   render(){
+
+    console.log(this.props.users)
 
         return(
         
@@ -28,8 +26,7 @@ state= {
               
           }
      </React.Fragment>
-
-
         )
+   
+    }
   }
-}

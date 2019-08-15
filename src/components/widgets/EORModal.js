@@ -31,7 +31,6 @@ componentDidMount(){
 }
 
 handleOpen = () => {
-  this.setState({ open: true })
   const updatedWheel = 
     {
       id: this.props.wheel.id,
@@ -52,13 +51,15 @@ handleOpen = () => {
   return newWheel
   })
   .then((newWheel) => {
-    this.props.getNewWheel(newWheel)
     this.props.addToAPI(newWheel, 'wheel')
   })
+  .then(()=> this.setState({ open: true }))
   };
 
 
   render(){
+
+
    
         return(
         
@@ -92,10 +93,10 @@ handleOpen = () => {
 
       <Modal trigger={<Button color='teal' fluid size='medium' onClick={this.handleOpen}> Pick New Prize</Button>  } open={this.state.open} >
       {
-        this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
+        this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.id)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} />
+      <NewPrize userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} team={this.props.team} handleWaitOpenClose={this.props.handleWaitOpenClose} />
         )
       }
       </Modal>

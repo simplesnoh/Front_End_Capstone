@@ -37,6 +37,7 @@ export default class PrizePhoto extends Component {
 
   submitForm = () => {
     this.storageRef
+    .child(this.state.username)
       .put(this.state.otherFile)
       .then((data) => data.ref.getDownloadURL())
       .then((url) => {

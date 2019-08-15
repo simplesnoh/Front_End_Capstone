@@ -7,10 +7,6 @@ import { Modal, Header, Button } from 'semantic-ui-react'
 export default class PleaseWait extends Component {
 
 
-handleOpen = () => {
-  this.setState({ open: true })
-  };
-
   render(){
    
         return(
@@ -24,7 +20,6 @@ handleOpen = () => {
                 <p>Once everyone is ready then the game will begin!</p>
               </Modal.Description>
             </Modal.Content>
-            <Button onClick={this.props.handleClose}>Close</Button>
             </React.Fragment>
      
         )
