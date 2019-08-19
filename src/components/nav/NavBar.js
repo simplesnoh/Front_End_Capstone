@@ -16,7 +16,7 @@ handleLogout = (event)=>{
     render() {
         return (
 
-        <Menu inverted>
+        <Menu color={'teal'} inverted >
             <Container>
                 <Menu.Item as={Link} to="/" header>Dashboard
                 {/* <Image size='mini' style={{ marginRight: '1.5em' }} />Dashboard */}

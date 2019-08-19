@@ -1,7 +1,8 @@
 import React, { Component } from "react"
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Image } from 'semantic-ui-react'
 import "./Login.css"
 import { Link } from 'react-router-dom';
+import logo from './logo.png'
 import { loginUser } from '../authorization/userManager';
 
 //TODO: Make the navbar go awao
@@ -20,7 +21,6 @@ export default class Login extends Component {
       submit = () => {
         loginUser(this.state.email, this.state.password)
           .then((user) => {
-            this.props.onLogin(user);
             sessionStorage.setItem('team', user.id)
             this.props.teamRelationship.forEach(relationship => {
               if(relationship.userId === user.id) {
@@ -40,9 +40,10 @@ export default class Login extends Component {
         return (
 
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
+    <Grid.Column style={{ maxWidth: 400 }}>
+        <Image src={logo} size='medium' centered /> 
       <Header as='h2' color='teal' textAlign='center'>
-        {/* <Image src='/logo.png' />*/} Member Login 
+        Member Login 
       </Header>
       <Form size='large' onSubmit={this.submit}>
         <Segment stacked>

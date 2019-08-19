@@ -38,7 +38,6 @@ export default class TeamPrizePhoto extends Component {
   submitForm = () => {
     APIManager.get("users", sessionStorage.getItem("team"))
     .then(user => {
-      console.log(user)
       this.setState({
         email: user.email,
         username: user.username
@@ -47,8 +46,6 @@ export default class TeamPrizePhoto extends Component {
       .put(this.state.otherFile)
       .then((data) => data.ref.getDownloadURL())
       .then((url) => {
-        console.log("submit", this.state.email)
-        console.log("submit", this.state.username)
         const updatedUser = {
           email: this.state.email,
           username: this.state.username,
@@ -79,7 +76,7 @@ export default class TeamPrizePhoto extends Component {
         .then((userPoints) => this.props.addToAPI(userPoints, "userPoints"))
         .then(() => {
           if(this.props.teamMemberTotal === this.props.teamMemberAdd) {
-            this.props.randomizeTasks()
+            this.props.randomizeTasks(this.props.wheel.id)
             this.props.history.push('/')
           } else {
           this.props.history.push('/')

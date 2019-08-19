@@ -18,6 +18,7 @@ export default class TeamNewPrize extends Component{
     open: false,
      prize: '',
      userId: '',
+     wheelId: "",
      id: ''
     };
 
@@ -32,6 +33,14 @@ export default class TeamNewPrize extends Component{
                 userId: sessionStorage.getItem('team')
             }
             this.props.addToAPI(newUserPoints, 'userPoints')
+            return wheel
+            }).then((wheel)=> {
+                const newUserPrize = {
+                    prize: this.state.prize,
+                    userId: this.state.userId,
+                    wheelId: wheel[0].id
+                    }
+                this.props.addToAPI(newUserPrize, 'userPrize')
             })
      }
 
@@ -43,19 +52,26 @@ export default class TeamNewPrize extends Component{
     
       handleNewRound = (evt) => {
         evt.preventDefault();
-        const newUserPrize = {
-            prize: this.state.prize,
-            userId: this.state.userId
+            const updateWheelCount = {
+                id: this.props.wheel.id,
+                completed: this.props.wheel.completed,
+                gameEnded: this.props.wheel.gameEnded,
+                closedModals: this.props.wheel.closedModals +1,
+                ownerId: this.props.wheel.ownerId,
+                teamId: this.props.wheel.teamId
             }
-        this.props.addToAPI(newUserPrize, 'userPrize')
+            this.props.updateAPI(updateWheelCount, "wheel")
         .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId')))     
         .then(() => {
-            let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
+            let userPoints = this.props.userPoints.filter(points => points.teamId === this.props.team.id && points.wheelId === this.props.wheel.id )
+            console.log("userPoints", userPoints)
             let userList = []
-            userPoints.forEach(task => {
+            userPoints.forEach(point => {
                 let users = this.props.users.filter(user => user.id === userPoints.userId)
                 userList.push(users)
             })
+            console.log("userList", userList)
+            console.log("user", userList.length-2)
             if(this.props.wheel.closedModals === userList.length-1){
                 const updatedWheel = {
                     id: this.props.wheel.id,
@@ -67,11 +83,12 @@ export default class TeamNewPrize extends Component{
                 }
                 this.props.updateAPI(updatedWheel, 'wheel')
                 .then(() => {
-                    this.props.randomizeTasks()
+                    this.props.randomizeTasks(this.props.wheel.id)
                     this.props.handleClose()
                 })
             }else{
-                this.setState({open:true})
+                this.props.handleClose()
+                this.props.handleWaitOpenClose(true)
             }
         }) 
         }
@@ -90,7 +107,6 @@ export default class TeamNewPrize extends Component{
   
   
     render(){
-
           return (
           <div>
 

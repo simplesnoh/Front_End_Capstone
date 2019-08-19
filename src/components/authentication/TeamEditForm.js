@@ -65,8 +65,9 @@ export default class TeamEditForm extends Component {
     }
 
     render() {
-        console.log(this.props.task)
+        
         return (
+            <React.Fragment>
             <Modal trigger={<List.Icon name='edit outline' verticalAlign='middle' onClick={this.handleOpen} />} open={this.state.open} >
                  <Modal.Header>Edit Task</Modal.Header>
             <Modal.Content>
@@ -77,6 +78,7 @@ export default class TeamEditForm extends Component {
             </Form>
             </Modal.Content>
           </Modal>
+          </React.Fragment>
         )
     }
 }

@@ -49,7 +49,7 @@ handleClose = () => {
       <React.Fragment>
       <Grid divided='vertically'>
       <h1>Time's Up!</h1>
-      <Grid.Row columns={5}>
+      <Grid.Row columns={4}>
       {
         this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id)
         .map(point => (
@@ -65,7 +65,7 @@ handleClose = () => {
 
       {
       this.state.maxPoints.map(points => (
-          <TeamEORPrize points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} />
+          <TeamEORPrize points={points} userPrizes={this.props.userPrizes} tasks={this.props.tasks} wheel={this.props.wheel} />
       ))
       }
       
@@ -75,10 +75,10 @@ handleClose = () => {
 
       <Modal trigger={<Button color='teal' fluid size='medium' onClick={this.handleOpen}> Pick New Prize</Button>  } open={this.state.open} >
       {
-        this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.wheelId)
+        this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.id)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <TeamNewPrize users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} userPoints={this.props.userPoints} />
+      <TeamNewPrize handleWaitOpenClose={this.props.handleWaitOpenClose} users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} userPoints={this.props.userPoints} team={this.props.team} randomizeTasks={this.props.randomizeTasks} />
         )
       }
        </Modal>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Modal } from 'semantic-ui-react' 
 import APIManager from '../modules/APIManager'
-import PleaseWait from './PleaseWait'
+
 
 /*TODO:
 - Add cute photo
@@ -27,7 +27,6 @@ export default class NewPrize extends Component{
         fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
          .then(data => data.json())
          .then(wheel => {
-            console.log(wheel)
             const newUserPoints = {
                 teamId: +sessionStorage.getItem('teamId'),
                 wheelId: wheel[0].id ,
@@ -51,7 +50,6 @@ export default class NewPrize extends Component{
             this.props.tasks.forEach(task => {
                 const updatedtask ={
                     name: task.name,
-                    userId: " ",
                     completed: false,
                     ownerId: task.ownerId,
                     taskTypeId: task.taskTypeId,
@@ -66,7 +64,10 @@ export default class NewPrize extends Component{
         .then(newTasks => {
             newTasks.forEach(task => this.props.addToAPI(task, 'tasks'))
         })
-        .then(()=> this.setState({open:true}))
+        .then(()=> {
+            this.props.handleClose()
+            this.props.handleWaitOpenClose(true)
+        })
      }
 
     handleFieldChange = (event) => {
@@ -96,6 +97,7 @@ export default class NewPrize extends Component{
   
     render(){
 
+
           return (
           <div>
 
@@ -103,9 +105,7 @@ export default class NewPrize extends Component{
           <Form.Group widths='equal'>
             <Form.Field>
             <Form.Input fluid onChange={this.handleFieldChange} id="prize" label='Pick A New Prize' value={this.state.prize} />
-            <Modal trigger={<Form.Button onClick={this.handleNewRound}>Submit</Form.Button>} open={this.state.open}>
-                <PleaseWait handleClose={this.props.handleClose} />
-            </Modal>
+            <Form.Button onClick={this.handleNewRound}>Submit</Form.Button>
            </Form.Field>
         </Form.Group>
         </Form>

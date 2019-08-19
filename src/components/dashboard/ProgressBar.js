@@ -5,7 +5,7 @@ export default class ProgressBar extends Component {
 
   calculateProgress = () => {
     let yourTaskList = this.props.task.filter(
-      task => task.userId === this.props.user.id
+      task => task.userId === this.props.user.id && task.wheelId === this.props.wheel.id
     );
     let doneTasks = yourTaskList.filter(task => task.completed === true);
     let splitNum = 100 / yourTaskList.length;

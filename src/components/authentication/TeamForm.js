@@ -59,6 +59,7 @@ export default class TeamForm extends Component {
           completed: false,
           ownerId: sessionStorage.getItem("team"),
           taskTypeId: 3,
+          wheelId: this.props.wheel.id,
           teamId: this.props.teams.id
         };
         return this.props.addToAPI(punishmentTask, "tasks");
@@ -70,7 +71,10 @@ export default class TeamForm extends Component {
         };
         return this.props.addToAPI(teamRelationship, "teamRelationship");
       })
-      .then(sessionStorage.setItem("members", this.state.value));
+      .then(() => {
+        sessionStorage.setItem("members", this.state.value)
+        sessionStorage.setItem("teamId", this.props.teams.id)
+      })
     this.props.history.push("/PrizePhoto");
   };
 
@@ -78,7 +82,6 @@ export default class TeamForm extends Component {
     const newTask = {
       name: this.state.task,
       completed: false,
-      userId: "",
       ownerId: sessionStorage.getItem("team"),
       taskTypeId: 2,
       teamId: this.props.teams.id,
@@ -91,8 +94,6 @@ export default class TeamForm extends Component {
 
   render() {
     const { value, options } = this.state;
-
-    console.log("name", this.state.teamName)
 
     return (
       <Grid
