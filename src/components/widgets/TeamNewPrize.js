@@ -63,13 +63,16 @@ export default class TeamNewPrize extends Component{
             this.props.updateAPI(updateWheelCount, "wheel")
         .then(()=> this.getNewWheel('wheel', +sessionStorage.getItem('teamId')))     
         .then(() => {
-            let userPoints = this.props.userPoints.filter(points => points.teamId === sessionStorage.getItem('teamId'))
+            let userPoints = this.props.userPoints.filter(points => points.teamId === this.props.team.id && points.wheelId === this.props.wheel.id )
+            console.log("userPoints", userPoints)
             let userList = []
-            userPoints.forEach(task => {
+            userPoints.forEach(point => {
                 let users = this.props.users.filter(user => user.id === userPoints.userId)
                 userList.push(users)
             })
-            if(this.props.wheel.closedModals === userList.length-2){
+            console.log("userList", userList)
+            console.log("user", userList.length-2)
+            if(this.props.wheel.closedModals === userList.length-1){
                 const updatedWheel = {
                     id: this.props.wheel.id,
                     completed: true,
@@ -80,7 +83,7 @@ export default class TeamNewPrize extends Component{
                 }
                 this.props.updateAPI(updatedWheel, 'wheel')
                 .then(() => {
-                    this.props.randomizeTasks()
+                    this.props.randomizeTasks(this.props.wheel.id)
                     this.props.handleClose()
                 })
             }else{
@@ -104,7 +107,6 @@ export default class TeamNewPrize extends Component{
   
   
     render(){
-
           return (
           <div>
 

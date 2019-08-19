@@ -43,7 +43,7 @@ handleClose = () => {
 
 
   render(){
-   console.log(this.state.maxPoints)
+   
         return(
         
       <React.Fragment>
@@ -78,7 +78,7 @@ handleClose = () => {
         this.props.userPrizes.filter(prize => prize.wheelId === this.props.wheel.id)
         .filter(prize => prize.userId === sessionStorage.getItem('team'))
         .map( prize => 
-      <TeamNewPrize handleWaitOpenClose={this.handleWaitOpenClose} users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} userPoints={this.props.userPoints} />
+      <TeamNewPrize handleWaitOpenClose={this.props.handleWaitOpenClose} users={this.props.users} userPrize={prize} updateAPI={this.props.updateAPI} handleClose={this.props.handleFirstClose} addToAPI={this.props.addToAPI} tasks={this.props.allTasks} wheel={this.props.wheel} userPoints={this.props.userPoints} team={this.props.team} randomizeTasks={this.props.randomizeTasks} />
         )
       }
        </Modal>

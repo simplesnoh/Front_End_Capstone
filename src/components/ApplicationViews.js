@@ -24,10 +24,14 @@ export default class ApplicationViews extends Component {
     newWheel: []
   };
 
-  randomizeTasks = () => {
-    let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
+  randomizeTasks = (wheelId) => {
+    let currentWheel = this.state.wheel.filter(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.gameEnded !== true && wheel.completed !== true)
+    console.log("currentWheel", currentWheel)
+    let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId') && task.wheelId === currentWheel[0].id)
+    console.log("filteredTasks", thisTask)
     let taskList = thisTask.filter(task => task.taskTypeId === 2)
-    let userPoints = this.state.userPoints.filter(points => points.teamId === +sessionStorage.getItem('teamId'))
+    console.log("taskList", taskList)
+    let userPoints = this.state.userPoints.filter(points => points.teamId === +sessionStorage.getItem('teamId') && points.wheelId === wheelId)
     let userList = []
     userPoints.forEach(userPoints => {
       this.state.users.filter(user => user.id === userPoints.userId)
@@ -41,7 +45,6 @@ export default class ApplicationViews extends Component {
     for(let i = 0; i < tasksPerGroup; i++){
       let randomTask = Math.floor(Math.random()*taskList.length)
       if(taskList[randomTask]){
-        console.log(user.id)
           const addUserId = {
             name: taskList[randomTask].name,
             completed: taskList[randomTask].completed,
@@ -122,7 +125,7 @@ export default class ApplicationViews extends Component {
           let thisWheel = this.state.wheel.find(wheel => wheel.teamId === +sessionStorage.getItem('teamId') && wheel.completed !== true)
           let thisTeam = this.state.teams.find(team => team.id === +sessionStorage.getItem('teamId'))
           let thisTask = this.state.tasks.filter(task => task.teamId === +sessionStorage.getItem('teamId'))
-          return <Dashboard {...props} task={thisTask} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} getNewWheel={(newWheel) => this.setState({ newWheel: newWheel })} />
+          return <Dashboard {...props} task={thisTask} randomizeTasks={this.randomizeTasks} wheel={thisWheel} team={thisTeam} userPoints={this.state.userPoints} updateAPI={this.updateAPI} addToAPI={this.addToAPI} users={this.state.users} userPrize={this.state.userPrize} getNewWheel={(newWheel) => this.setState({ newWheel: newWheel })} />
           }} />
      
         <Route path="/TeamForm" render={props => {

@@ -7,8 +7,6 @@ export default class UserPoints extends Component {
 
   render(){
 
-    console.log(this.props.users)
-
         return(
         
       <React.Fragment>
@@ -18,7 +16,7 @@ export default class UserPoints extends Component {
                 <div key={user.id} >
                 <Label>{user.username}</Label>
    
-                <ProgressBar task={this.props.tasks} allUsers={this.props.users} points={this.props.points} user={user} />
+                <ProgressBar task={this.props.tasks} allUsers={this.props.users} points={this.props.points} user={user} wheel={this.props.wheel} />
   
                  <div>{this.props.points.points}</div>
                  </div>

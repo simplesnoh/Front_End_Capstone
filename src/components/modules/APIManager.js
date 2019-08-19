@@ -13,7 +13,6 @@ export default Object.create(null, {
   },
   delete: {
     value: function(id, entity) {
-      console.log("API", id, entity)
       return fetch(`${remoteURL}/${entity}/${id}`, {
         method: "DELETE"
       })

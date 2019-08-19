@@ -27,7 +27,6 @@ export default class NewPrize extends Component{
         fetch(`${remoteURL}/${entity}?gameEnded=false&teamId=${teamId}`)
          .then(data => data.json())
          .then(wheel => {
-            console.log(wheel)
             const newUserPoints = {
                 teamId: +sessionStorage.getItem('teamId'),
                 wheelId: wheel[0].id ,
@@ -98,7 +97,6 @@ export default class NewPrize extends Component{
   
     render(){
 
-        console.log(this.props.userPrize)
 
           return (
           <div>

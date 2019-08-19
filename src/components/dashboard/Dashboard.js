@@ -39,7 +39,8 @@ export default class Dashboard extends Component {
 
 
   render(){
-    console.log(this.props.wheel)
+    console.log("wheel", this.props.wheel)
+
     if (this.props.wheel !== undefined){
         return(
            <div>
@@ -48,7 +49,7 @@ export default class Dashboard extends Component {
               {
               this.props.userPoints.filter(userPoint => userPoint.wheelId === this.props.wheel.id)
               .map(point => (
-                <UserPoints users={this.props.users} points={point} tasks={this.props.task} />
+                <UserPoints users={this.props.users} points={point} tasks={this.props.task} wheel={this.props.wheel} />
               ))
             }
             </Segment>
@@ -56,7 +57,7 @@ export default class Dashboard extends Component {
             <Segment>
               {
                 this.props.team.teamMemberTotal === this.props.team.teamMemberAdd ?
-                this.props.task.filter(task => task.userId === sessionStorage.getItem('team'))
+                this.props.task.filter(task => task.userId === sessionStorage.getItem('team') && task.wheelId === this.props.wheel.id)
                 .map(task => <TaskList task={task} userPoints={this.props.userPoints} wheel={this.props.wheel} updateAPI={this.props.updateAPI}/>)
               :
                 <div>Please Wait For Team Mates!</div>
@@ -86,7 +87,7 @@ export default class Dashboard extends Component {
         {
           this.props.task.filter(task => task.taskTypeId === 3 && task.wheelId === this.props.wheel.id)
           .map(task => (
-          <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} handleWaitOpenClose={this.handleWaitOpenClose} />
+          <TeamEORModal users={this.props.users} userPoints={this.props.userPoints} addToAPI={this.props.addToAPI} userPrizes={this.props.userPrize} tasks={task} allTasks={this.props.task} wheel={this.props.wheel} updateAPI={this.props.updateAPI} handleFirstClose={this.handleFirstClose} team={this.props.team} getNewWheel={this.props.getNewWheel} handleWaitOpenClose={this.handleWaitOpenClose} randomizeTasks={this.props.randomizeTasks} />
           ))
         }
       </Modal>

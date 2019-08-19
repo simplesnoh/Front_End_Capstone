@@ -148,7 +148,7 @@
     {
       "name": "Feed cats",
       "completed": false,
-      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -162,15 +162,17 @@
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 22
     },
     {
       "name": "Pull weeds",
       "completed": true,
-      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 23
     },
     {
@@ -180,30 +182,33 @@
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 24
     },
     {
       "name": "Dust",
       "completed": true,
-      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 25
     },
     {
       "name": "Vacuum",
       "completed": true,
-      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 26
     },
     {
       "name": "Check the mail",
       "completed": false,
-      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -213,7 +218,7 @@
     {
       "name": "Clean off counters",
       "completed": false,
-      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -223,7 +228,7 @@
     {
       "name": "Clean mirrors & windows",
       "completed": false,
-      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -233,7 +238,7 @@
     {
       "name": "Refill bird feeders",
       "completed": false,
-      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -243,16 +248,17 @@
     {
       "name": "Boil loofa",
       "completed": true,
-      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
+      "wheelId": 5,
       "id": 31
     },
     {
       "name": "Water Plants",
       "completed": false,
-      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "taskTypeId": 2,
       "teamId": 5,
@@ -267,6 +273,135 @@
       "wheelId": 5,
       "teamId": 5,
       "id": 33
+    },
+    {
+      "name": "Feed cats",
+      "completed": false,
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 34
+    },
+    {
+      "name": "Mow lawn",
+      "completed": false,
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 35
+    },
+    {
+      "name": "Pull weeds",
+      "completed": false,
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 36
+    },
+    {
+      "name": "Sweep & mop",
+      "completed": false,
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 37
+    },
+    {
+      "name": "Dust",
+      "completed": false,
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 38
+    },
+    {
+      "name": "Vacuum",
+      "completed": false,
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 39
+    },
+    {
+      "name": "Check the mail",
+      "completed": false,
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 40
+    },
+    {
+      "name": "Clean off counters",
+      "completed": false,
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 41
+    },
+    {
+      "name": "Clean mirrors & windows",
+      "completed": false,
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 42
+    },
+    {
+      "name": "Refill bird feeders",
+      "completed": false,
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 43
+    },
+    {
+      "name": "Boil loofa",
+      "completed": false,
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 44
+    },
+    {
+      "name": "Water Plants",
+      "completed": false,
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 2,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 45
+    },
+    {
+      "name": "Clean the litter box",
+      "completed": false,
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "taskTypeId": 3,
+      "teamId": 5,
+      "wheelId": 6,
+      "id": 46
     }
   ],
   "teams": [
@@ -321,10 +456,18 @@
     },
     {
       "id": 5,
-      "completed": false,
+      "completed": true,
       "gameEnded": false,
+      "closedModals": 2,
       "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
       "teamId": 5
+    },
+    {
+      "completed": false,
+      "gameEnded": false,
+      "teamId": 5,
+      "ownerId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "id": 6
     }
   ],
   "taskType": [
@@ -392,6 +535,24 @@
       "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "wheelId": 5,
       "id": 9
+    },
+    {
+      "prize": "Cat cafe Saturday",
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "wheelId": 6,
+      "id": 10
+    },
+    {
+      "prize": "Everyone buys me a pack of cookies",
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "wheelId": 6,
+      "id": 11
+    },
+    {
+      "prize": "Foot massage",
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "wheelId": 6,
+      "id": 12
     }
   ],
   "userPoints": [
@@ -460,6 +621,27 @@
       "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
       "points": 20,
       "id": 10
+    },
+    {
+      "teamId": 5,
+      "wheelId": 6,
+      "points": 0,
+      "userId": "gzMjc5xOlmYx65KUUgmQJFJl0Kk2",
+      "id": 11
+    },
+    {
+      "teamId": 5,
+      "wheelId": 6,
+      "points": 0,
+      "userId": "kVCexvBkzZRlXSolBLt9HxSJbFf2",
+      "id": 12
+    },
+    {
+      "teamId": 5,
+      "wheelId": 6,
+      "points": 0,
+      "userId": "DF3dbNHEklYFJYGbA2ZTHh1cH0k2",
+      "id": 13
     }
   ],
   "teamRelationship": [
